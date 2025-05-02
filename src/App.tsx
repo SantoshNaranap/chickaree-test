@@ -29,11 +29,31 @@ const AppContent = () => {
     // Add the palette class
     document.documentElement.classList.add(`palette-${savedPalette}`);
     
-    // Force browser to recalculate styles
+    // Force browser to recalculate styles to ensure theme is applied correctly
     document.body.style.visibility = 'hidden';
     setTimeout(() => {
       document.body.style.visibility = 'visible';
     }, 50);
+    
+    // Add event listener for storage changes to sync palette across tabs
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === "theme-palette") {
+        const newPalette = event.newValue || "system";
+        
+        document.documentElement.classList.forEach(className => {
+          if (className.startsWith('palette-')) {
+            document.documentElement.classList.remove(className);
+          }
+        });
+        
+        document.documentElement.classList.add(`palette-${newPalette}`);
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   return (

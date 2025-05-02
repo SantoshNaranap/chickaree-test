@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Palette } from "lucide-react";
@@ -111,7 +112,7 @@ const ThemeSelector = () => {
     
     // Apply appropriate theme based on palette
     applyThemeBasedOnPalette(savedPalette);
-  }, [setTheme]);
+  }, []);
   
   const applyPaletteClass = (paletteKey: string) => {
     // Remove any existing palette classes

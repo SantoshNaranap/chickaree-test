@@ -22,6 +22,18 @@ const ThemeToggle = () => {
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
+    
+    // Preserve the current palette when toggling theme
+    const currentPalette = localStorage.getItem("theme-palette") || "system";
+    if (currentPalette !== "system") {
+      document.documentElement.classList.forEach(className => {
+        if (className.startsWith('palette-')) {
+          document.documentElement.classList.remove(className);
+        }
+      });
+      document.documentElement.classList.add(`palette-${currentPalette}`);
+    }
+    
     toast({
       title: `${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} theme activated`,
       description: `Application appearance updated to ${newTheme} mode`,
