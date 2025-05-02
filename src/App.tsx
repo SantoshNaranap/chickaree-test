@@ -11,28 +11,49 @@ import Lab from "./pages/Lab";
 import Sources from "./pages/Sources";
 import AddSource from "./pages/AddSource";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+
+// Function to apply the saved palette on app initialization
+const AppContent = () => {
+  useEffect(() => {
+    // Get palette from localStorage or use default
+    const savedPalette = localStorage.getItem("theme-palette") || "system";
+    
+    // Apply the palette class to the document
+    document.documentElement.classList.forEach(className => {
+      if (className.startsWith('palette-')) {
+        document.documentElement.classList.remove(className);
+      }
+    });
+    document.documentElement.classList.add(`palette-${savedPalette}`);
+  }, []);
+
+  return (
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/lab" replace />} />
+          <Route path="/lab" element={<Lab />} />
+          <Route path="/bots" element={<Bots />} />
+          <Route path="/sources" element={<Sources />} />
+          <Route path="/sources/add" element={<AddSource />} />
+          <Route path="/subscriptions" element={<Index />} />
+          <Route path="/settings" element={<Index />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  );
+};
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Navigate to="/lab" replace />} />
-            <Route path="/lab" element={<Lab />} />
-            <Route path="/bots" element={<Bots />} />
-            <Route path="/sources" element={<Sources />} />
-            <Route path="/sources/add" element={<AddSource />} />
-            <Route path="/subscriptions" element={<Index />} />
-            <Route path="/settings" element={<Index />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <AppContent />
     </ThemeProvider>
   </QueryClientProvider>
 );

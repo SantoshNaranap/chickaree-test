@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Palette } from "lucide-react";
@@ -104,6 +103,14 @@ const ThemeSelector = () => {
     // Get palette from localStorage or use default
     const savedPalette = localStorage.getItem("theme-palette") || "system";
     setPalette(savedPalette);
+    
+    // Apply the palette class to the document on mount
+    document.documentElement.classList.forEach(className => {
+      if (className.startsWith('palette-')) {
+        document.documentElement.classList.remove(className);
+      }
+    });
+    document.documentElement.classList.add(`palette-${savedPalette}`);
   }, []);
   
   if (!mounted) {
