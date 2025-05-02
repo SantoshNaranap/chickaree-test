@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -110,9 +111,15 @@ const Sources = () => {
           <div className="flex flex-col space-y-6">
             {/* Data sources grid section */}
             <div className="w-full">
-              <div className="mb-4">
-                <h1 className="text-2xl font-light">Your Data Sources</h1>
-                <p className="text-muted-foreground">Connect and manage your knowledge sources</p>
+              <div className="mb-4 flex justify-between items-center">
+                <div>
+                  <h1 className="text-2xl font-light">Your Data Sources</h1>
+                  <p className="text-muted-foreground">Connect and manage your knowledge sources</p>
+                </div>
+                <Button className="bg-card hover:bg-muted border border-border text-foreground">
+                  <Plus className="mr-2" size={18} />
+                  Add New Data Source
+                </Button>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
@@ -131,11 +138,6 @@ const Sources = () => {
                   </div>
                 ))}
               </div>
-              
-              <Button className="w-full md:w-auto bg-card hover:bg-muted border border-border text-foreground">
-                <Plus className="mr-2" size={18} />
-                Add New Data Source
-              </Button>
             </div>
             
             {/* Source editor section - now below the grid */}
