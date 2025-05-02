@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -9,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ModelSettings from '../components/ModelSettings';
 import { Textarea } from "@/components/ui/textarea";
 import ConfigureBot from '../components/ConfigureBot';
+import Concierge from '../components/Concierge';
 
 const Lab = () => {
   const dataSources = [
@@ -116,37 +116,27 @@ const Lab = () => {
                 ))}
               </div>
               
-              <h2 className="text-2xl font-light mb-4">Configure Bot</h2>
-              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
-                <ConfigureBot />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                  <h2 className="text-2xl font-light mb-4">Configure Bot</h2>
+                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
+                    <ConfigureBot />
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-2xl font-light mb-4">Model Settings</h2>
+                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
+                    <div className="p-6">
+                      <ModelSettings />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             
             <div>
               <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
-                <div className="p-6">
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-2xl font-light">Model Settings</h2>
-                    <button className="text-gray-400 hover:text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </button>
-                  </div>
-                  <ModelSettings />
-                  
-                  <div className="flex items-center justify-between mt-6">
-                    <Button variant="outline" className="px-4 py-2 text-sm rounded-lg bg-[#252525] border-gray-700 text-white">
-                      Reset
-                    </Button>
-                    <Button className="bg-oralia-purple hover:bg-oralia-light-purple px-4 py-2 text-sm rounded-lg">
-                      Save to chatbot
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg">
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-light">Your Concierge</h2>
@@ -157,32 +147,7 @@ const Lab = () => {
                     </button>
                   </div>
                   
-                  <div className="bg-[#252525] rounded-xl overflow-hidden">
-                    <div className="p-4 min-h-[100px]">
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-oralia-purple rounded-full flex items-center justify-center text-white">
-                          AI
-                        </div>
-                        <div>
-                          <p className="text-white text-sm">Hi! What can I help you with?</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="p-3 border-t border-gray-800">
-                      <div className="relative">
-                        <Textarea 
-                          placeholder="Ask a question..." 
-                          className="bg-[#252525] border-gray-700 min-h-[40px] resize-none py-2"
-                        />
-                        <button className="absolute right-3 bottom-2 text-oralia-purple hover:text-white">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <Concierge />
                 </div>
               </div>
             </div>
