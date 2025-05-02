@@ -6,7 +6,7 @@ const Concierge: React.FC = () => {
   const [message, setMessage] = useState('');
   
   return (
-    <div className="bg-oralia-dark-gray rounded-xl overflow-hidden">
+    <div className="bg-oralia-dark-gray rounded-xl overflow-hidden h-full flex flex-col">
       <div className="flex items-center justify-between p-4 border-b border-oralia-light-gray">
         <h2 className="text-xl text-white font-medium">Your Concierge</h2>
         <button className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray">
@@ -14,7 +14,7 @@ const Concierge: React.FC = () => {
         </button>
       </div>
       
-      <div className="p-4 h-48 overflow-y-auto">
+      <div className="p-4 flex-grow overflow-y-auto">
         <div className="flex mb-4">
           <div className="w-8 h-8 bg-oralia-purple rounded-full flex items-center justify-center text-white mr-3">
             AI
@@ -25,14 +25,14 @@ const Concierge: React.FC = () => {
         </div>
       </div>
       
-      <div className="p-4 border-t border-oralia-light-gray">
+      <div className="p-4 border-t border-oralia-light-gray mt-auto">
         <div className="relative">
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Ask a question..."
-            className="message-input"
+            className="message-input w-full bg-oralia-light-gray rounded-lg px-4 py-2 text-white border-none focus:outline-none focus:ring-1 focus:ring-oralia-purple"
           />
           <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-oralia-purple hover:text-white">
             <Send className="w-5 h-5" />

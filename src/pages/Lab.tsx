@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -62,8 +63,8 @@ const Lab = () => {
         <Header />
         
         <div className="flex-1 overflow-y-auto p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">
+            <div className="lg:col-span-2 flex flex-col">
               <h2 className="text-2xl font-light mb-4">Data Sources</h2>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
@@ -116,28 +117,30 @@ const Lab = () => {
                 ))}
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div className="flex flex-col">
                   <h2 className="text-2xl font-light mb-4">Configure Bot</h2>
-                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
+                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg flex-grow">
                     <ConfigureBot />
                   </div>
                 </div>
 
-                <div>
+                <div className="flex flex-col">
                   <h2 className="text-2xl font-light mb-4">Model Settings</h2>
-                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
-                    <div className="p-6">
+                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg flex-grow">
+                    <div className="p-6 h-full">
                       <ModelSettings />
                     </div>
                   </div>
                 </div>
               </div>
+              
+              <ContentFooter />
             </div>
             
-            <div>
-              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
-                <div className="p-6">
+            <div className="flex flex-col h-full">
+              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg flex-grow">
+                <div className="p-6 h-full flex flex-col">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-light">Your Concierge</h2>
                     <button className="text-gray-400 hover:text-white">
@@ -147,13 +150,13 @@ const Lab = () => {
                     </button>
                   </div>
                   
-                  <Concierge />
+                  <div className="flex-grow h-full">
+                    <Concierge />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          <ContentFooter />
         </div>
       </div>
     </div>
