@@ -116,14 +116,12 @@ const Sources = () => {
                   <h1 className="text-2xl font-light">Your Data Sources</h1>
                   <p className="text-muted-foreground">Connect and manage your knowledge sources</p>
                 </div>
-                <Button 
-                  className="bg-card hover:bg-muted border border-border text-foreground"
-                  as={Link}
-                  to="/sources/add"
-                >
-                  <Plus className="mr-2" size={18} />
-                  Add New Data Source
-                </Button>
+                <Link to="/sources/add">
+                  <Button className="bg-card hover:bg-muted border border-border text-foreground">
+                    <Plus className="mr-2" size={18} />
+                    Add New Data Source
+                  </Button>
+                </Link>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">

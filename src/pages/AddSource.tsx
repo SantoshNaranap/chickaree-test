@@ -223,9 +223,11 @@ const AddSource = () => {
 
             {/* Action Buttons */}
             <div className="flex justify-between">
-              <Button variant="outline" as={Link} to="/sources">
-                Cancel
-              </Button>
+              <Link to="/sources">
+                <Button variant="outline">
+                  Cancel
+                </Button>
+              </Link>
               <Button className="bg-oralia-purple hover:bg-oralia-light-purple">
                 Add Source
               </Button>
