@@ -4,6 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { useTheme } from "next-themes";
 import { toast } from "@/hooks/use-toast";
+import ThemeSelector from "./ThemeSelector";
 
 const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
@@ -29,18 +30,21 @@ const ThemeToggle = () => {
   };
 
   return (
-    <Toggle
-      aria-label="Toggle theme"
-      className="mr-2 p-2 border-border bg-background hover:bg-secondary transition-colors"
-      pressed={theme === "light"}
-      onPressedChange={toggleTheme}
-    >
-      {theme === "dark" ? (
-        <Sun className="h-4 w-4 text-foreground" />
-      ) : (
-        <Moon className="h-4 w-4 text-foreground" />
-      )}
-    </Toggle>
+    <div className="flex items-center">
+      <ThemeSelector />
+      <Toggle
+        aria-label="Toggle theme"
+        className="p-2 border-border bg-background hover:bg-secondary transition-colors"
+        pressed={theme === "light"}
+        onPressedChange={toggleTheme}
+      >
+        {theme === "dark" ? (
+          <Sun className="h-4 w-4 text-foreground" />
+        ) : (
+          <Moon className="h-4 w-4 text-foreground" />
+        )}
+      </Toggle>
+    </div>
   );
 };
 
