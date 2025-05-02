@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -6,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import ModelSettings from "./ModelSettings";
 import { 
   Select,
   SelectContent,
@@ -49,28 +51,7 @@ const LabExperience = () => {
             </TabsList>
             
             <TabsContent value="model" className="p-6 space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="model-select">Model</Label>
-                <Select defaultValue="gpt4">
-                  <SelectTrigger id="model-select" className="bg-[#252525] border-gray-700">
-                    <SelectValue placeholder="Select model" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#252525] border-gray-700">
-                    <SelectItem value="gpt4">GPT-4</SelectItem>
-                    <SelectItem value="gpt35">GPT-3.5 Turbo</SelectItem>
-                    <SelectItem value="claude">Claude 2</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="system-prompt">System Prompt</Label>
-                <Textarea 
-                  id="system-prompt" 
-                  placeholder="Enter system prompt..." 
-                  className="bg-[#252525] border-gray-700 min-h-[100px]"
-                />
-              </div>
+              <ModelSettings />
             </TabsContent>
             
             <TabsContent value="parameters" className="p-6 space-y-4">
