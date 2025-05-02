@@ -52,15 +52,28 @@ const BotsList: React.FC = () => {
       {bots.map((bot) => (
         <div 
           key={bot.id} 
-          className="border border-oralia-light-gray bg-gradient-to-br from-[#171725] to-[#1e1e2c] rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300"
+          className={`relative overflow-hidden border border-border/50 bg-background/70 backdrop-blur-sm rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 ${
+            bot.status === 'Active' ? 'ring-1 ring-oralia-purple/30' : ''
+          }`}
         >
-          <div className="flex justify-between items-start mb-3">
-            <h3 className="font-semibold text-lg">{bot.name}</h3>
-            <span className={`text-xs px-2.5 py-1 rounded-full ${bot.status === 'Active' ? 'bg-gradient-to-r from-oralia-green to-emerald-600' : 'bg-gradient-to-r from-gray-600 to-gray-700'}`}>
+          {/* Decorative gradient elements */}
+          <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-oralia-light-purple to-oralia-purple rounded-full opacity-10 blur-xl"></div>
+          {bot.status === 'Active' && (
+            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-oralia-green to-emerald-600 rounded-full opacity-10 blur-xl"></div>
+          )}
+          
+          <div className="flex justify-between items-start mb-3 relative z-10">
+            <h3 className="font-medium text-lg">{bot.name}</h3>
+            <span className={`text-xs px-2.5 py-1 rounded-full ${
+              bot.status === 'Active' 
+                ? 'bg-gradient-to-r from-oralia-green to-emerald-600 text-white' 
+                : 'bg-background/90 border border-border text-muted-foreground'
+            }`}>
               {bot.status}
             </span>
           </div>
-          <div className="space-y-1.5 mb-4 text-xs text-gray-400">
+          
+          <div className="space-y-1.5 mb-4 text-xs text-muted-foreground relative z-10">
             <div className="flex items-center">
               <svg className="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" />
@@ -80,14 +93,15 @@ const BotsList: React.FC = () => {
               Access: {bot.access}
             </div>
           </div>
-          <div className="flex justify-center space-x-6 pt-3 border-t border-oralia-light-gray">
-            <button className="text-gray-400 hover:text-oralia-purple transition-colors">
+          
+          <div className="flex justify-center space-x-6 pt-3 border-t border-border/30 relative z-10">
+            <button className="text-muted-foreground hover:text-oralia-purple transition-colors">
               <Eye className="w-4 h-4" />
             </button>
-            <button className="text-gray-400 hover:text-oralia-purple transition-colors">
+            <button className="text-muted-foreground hover:text-oralia-purple transition-colors">
               <Edit className="w-4 h-4" />
             </button>
-            <button className="text-gray-400 hover:text-oralia-purple transition-colors">
+            <button className="text-muted-foreground hover:text-oralia-purple transition-colors">
               <Trash2 className="w-4 h-4" />
             </button>
           </div>

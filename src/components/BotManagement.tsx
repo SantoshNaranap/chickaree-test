@@ -9,15 +9,15 @@ import AuditTable from './AuditTable';
 const BotManagement = () => {
   return (
     <div className="space-y-8">
-      <div className="bg-gradient-to-r from-oralia-dark-gray to-[#1a1a24] rounded-xl border border-oralia-light-gray p-6 shadow-lg">
+      <div className="bg-card/60 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-lg">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-medium">Your Bots</h2>
+          <h2 className="text-xl font-medium">Your Bots</h2>
           <div className="flex space-x-3">
-            <Button variant="outline" size="sm" className="text-white border-gray-700 hover:bg-oralia-light-gray">
+            <Button variant="outline" size="sm" className="bg-background/70 backdrop-blur-sm border-border/50 hover:bg-background/90">
               <Filter className="w-4 h-4 mr-2" />
               Filter
             </Button>
-            <Button variant="outline" size="sm" className="text-white border-gray-700 hover:bg-oralia-light-gray">
+            <Button variant="outline" size="sm" className="bg-background/70 backdrop-blur-sm border-border/50 hover:bg-background/90">
               Export
             </Button>
           </div>
@@ -45,8 +45,8 @@ const BotManagement = () => {
         />
       </div>
       
-      <div className="bg-gradient-to-r from-oralia-dark-gray to-[#1a1a24] rounded-xl border border-oralia-light-gray p-6 shadow-lg">
-        <h2 className="text-2xl font-medium mb-6">Audit Information Table</h2>
+      <div className="bg-card/60 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-lg">
+        <h2 className="text-xl font-medium mb-6">Audit Information Table</h2>
         <AuditTable />
       </div>
     </div>
