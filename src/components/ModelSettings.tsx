@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
-import { Thermometer, MessageSquare, Bot, ChevronDown } from 'lucide-react';
+import { Thermometer, MessageSquare, Bot, ChevronDown, Brain, Cpu, Microchip, Atom } from 'lucide-react';
 import { 
   Select,
   SelectContent,
@@ -19,7 +19,7 @@ import {
 
 const ModelSettings = () => {
   const [temperature, setTemperature] = useState(0.5);
-  const [selectedModel, setSelectedModel] = useState("gpt4");
+  const [selectedModel, setSelectedModel] = useState("gpt4o");
 
   const handleTemperatureChange = (value: number[]) => {
     setTemperature(value[0]);
@@ -27,22 +27,39 @@ const ModelSettings = () => {
 
   const modelOptions = [
     {
-      value: "gpt4",
+      value: "gpt4o",
       label: "GPT-4o Mini",
       description: "Optimized for performance and speed",
-      color: "from-purple-500 to-indigo-500"
+      color: "from-purple-500 to-indigo-500",
+      icon: Bot
     },
     {
       value: "gpt35",
       label: "GPT-3.5 Turbo",
       description: "Fast and efficient responses",
-      color: "from-green-400 to-teal-500"
+      color: "from-green-400 to-teal-500",
+      icon: Cpu
     },
     {
       value: "claude",
       label: "Claude 2",
       description: "Enhanced reasoning capabilities",
-      color: "from-amber-400 to-orange-500"
+      color: "from-amber-400 to-orange-500",
+      icon: Brain
+    },
+    {
+      value: "gpt45",
+      label: "GPT-4.5 Preview",
+      description: "Advanced reasoning and analysis",
+      color: "from-blue-500 to-cyan-400",
+      icon: Microchip
+    },
+    {
+      value: "llama3",
+      label: "Llama 3.1 Sonar",
+      description: "Open source model with context window of 128K",
+      color: "from-pink-500 to-rose-400",
+      icon: Atom
     }
   ];
 
@@ -71,7 +88,7 @@ const ModelSettings = () => {
             >
               <div className="flex items-center gap-3">
                 <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${modelOptions.find(m => m.value === selectedModel)?.color || "from-purple-500 to-indigo-500"} flex items-center justify-center`}>
-                  <Bot size={16} className="text-white" />
+                  {React.createElement(modelOptions.find(m => m.value === selectedModel)?.icon || Bot, { size: 16, className: "text-white" })}
                 </div>
                 <div>
                   <p className="font-medium">{modelOptions.find(m => m.value === selectedModel)?.label || "Select Model"}</p>
@@ -82,7 +99,7 @@ const ModelSettings = () => {
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-[340px] p-4 bg-background/95 backdrop-blur-md border-purple-500/20 shadow-lg shadow-purple-500/10">
-            <div className="space-y-2">
+            <div className="space-y-2 max-h-[300px] overflow-y-auto">
               {modelOptions.map((model) => (
                 <button 
                   key={model.value}
@@ -90,7 +107,7 @@ const ModelSettings = () => {
                   className={`flex items-center gap-3 px-3 py-3 rounded-lg w-full text-left cursor-pointer hover:bg-purple-500/10 ${selectedModel === model.value ? 'bg-purple-500/10 border-l-2 border-purple-500' : ''}`}
                 >
                   <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${model.color} flex items-center justify-center`}>
-                    <Bot size={16} className="text-white" />
+                    {React.createElement(model.icon, { size: 16, className: "text-white" })}
                   </div>
                   <div className="flex-1">
                     <p className="font-medium">{model.label}</p>
