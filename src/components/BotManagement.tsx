@@ -8,16 +8,16 @@ import AuditTable from './AuditTable';
 
 const BotManagement = () => {
   return (
-    <div className="space-y-6">
-      <div className="bg-oralia-dark-gray rounded-xl border border-oralia-light-gray p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-medium">Your Bots</h2>
-          <div className="flex space-x-2">
-            <Button variant="outline" size="sm" className="text-white border-gray-700">
+    <div className="space-y-8">
+      <div className="bg-gradient-to-r from-oralia-dark-gray to-[#1a1a24] rounded-xl border border-oralia-light-gray p-6 shadow-lg">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-medium">Your Bots</h2>
+          <div className="flex space-x-3">
+            <Button variant="outline" size="sm" className="text-white border-gray-700 hover:bg-oralia-light-gray">
               <Filter className="w-4 h-4 mr-2" />
               Filter
             </Button>
-            <Button variant="outline" size="sm" className="text-white border-gray-700">
+            <Button variant="outline" size="sm" className="text-white border-gray-700 hover:bg-oralia-light-gray">
               Export
             </Button>
           </div>
@@ -26,7 +26,7 @@ const BotManagement = () => {
         <BotsList />
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <AnalyticsSection 
           title="User Analytics" 
           data={[
@@ -45,8 +45,8 @@ const BotManagement = () => {
         />
       </div>
       
-      <div className="bg-oralia-dark-gray rounded-xl border border-oralia-light-gray p-4">
-        <h2 className="text-xl font-medium mb-4">Audit Information Table</h2>
+      <div className="bg-gradient-to-r from-oralia-dark-gray to-[#1a1a24] rounded-xl border border-oralia-light-gray p-6 shadow-lg">
+        <h2 className="text-2xl font-medium mb-6">Audit Information Table</h2>
         <AuditTable />
       </div>
     </div>
