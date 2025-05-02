@@ -1,9 +1,12 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Search, Database, Settings, File, Settings as SettingsIcon } from 'lucide-react';
 
 const Sidebar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <div className="bg-oralia-dark-gray h-screen w-60 flex flex-col border-r border-oralia-light-gray">
       <div className="p-4 border-b border-oralia-light-gray">
@@ -13,7 +16,12 @@ const Sidebar = () => {
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
           <li>
-            <Link to="/lab" className="flex items-center px-4 py-2 text-gray-400 rounded-md hover:bg-oralia-light-gray">
+            <Link 
+              to="/lab" 
+              className={`flex items-center px-4 py-2 rounded-md hover:bg-oralia-light-gray ${
+                currentPath === '/lab' || currentPath === '/' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
+              }`}
+            >
               <div className="w-6 h-6 mr-3 flex items-center justify-center">
                 <Database className="w-5 h-5" />
               </div>
@@ -21,7 +29,12 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/bots" className="flex items-center px-4 py-2 text-gray-400 rounded-md hover:bg-oralia-light-gray">
+            <Link 
+              to="/bots" 
+              className={`flex items-center px-4 py-2 rounded-md hover:bg-oralia-light-gray ${
+                currentPath === '/bots' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
+              }`}
+            >
               <div className="w-6 h-6 mr-3 flex items-center justify-center">
                 <span className="text-lg">🤖</span>
               </div>
@@ -29,7 +42,12 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/" className="flex items-center px-4 py-2 text-white bg-oralia-light-gray rounded-md">
+            <Link 
+              to="/" 
+              className={`flex items-center px-4 py-2 rounded-md hover:bg-oralia-light-gray ${
+                currentPath === '/sources' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
+              }`}
+            >
               <div className="w-6 h-6 mr-3 flex items-center justify-center">
                 <File className="w-5 h-5" />
               </div>
@@ -37,7 +55,12 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/subscriptions" className="flex items-center px-4 py-2 text-gray-400 rounded-md hover:bg-oralia-light-gray">
+            <Link 
+              to="/subscriptions" 
+              className={`flex items-center px-4 py-2 rounded-md hover:bg-oralia-light-gray ${
+                currentPath === '/subscriptions' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
+              }`}
+            >
               <div className="w-6 h-6 mr-3 flex items-center justify-center">
                 <span className="text-lg">💳</span>
               </div>
@@ -45,7 +68,12 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/settings" className="flex items-center px-4 py-2 text-gray-400 rounded-md hover:bg-oralia-light-gray">
+            <Link 
+              to="/settings" 
+              className={`flex items-center px-4 py-2 rounded-md hover:bg-oralia-light-gray ${
+                currentPath === '/settings' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
+              }`}
+            >
               <div className="w-6 h-6 mr-3 flex items-center justify-center">
                 <SettingsIcon className="w-5 h-5" />
               </div>

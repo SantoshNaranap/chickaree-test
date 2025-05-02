@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
+import Bots from "./pages/Bots";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,7 +21,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/lab" element={<Index />} />
-            <Route path="/bots" element={<Index />} />
+            <Route path="/bots" element={<Bots />} />
             <Route path="/subscriptions" element={<Index />} />
             <Route path="/settings" element={<Index />} />
             <Route path="*" element={<NotFound />} />
