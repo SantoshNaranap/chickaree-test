@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
-import { Settings, Thermometer, MessageSquare, Bot, ChevronDown } from 'lucide-react';
+import { Thermometer, MessageSquare, Bot, ChevronDown } from 'lucide-react';
 import { 
   Select,
   SelectContent,
@@ -12,18 +12,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const ModelSettings = () => {
   const [temperature, setTemperature] = useState(0.5);
@@ -69,11 +61,13 @@ const ModelSettings = () => {
           </div>
         </div>
         
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+        {/* Replace the DropdownMenu with Popover for better stability */}
+        <Popover>
+          <PopoverTrigger asChild>
             <button 
               className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-left bg-gradient-to-r from-background/70 to-background/90 backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/50 transition-all" 
               id="model-dropdown"
+              type="button"
             >
               <div className="flex items-center gap-3">
                 <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${modelOptions.find(m => m.value === selectedModel)?.color || "from-purple-500 to-indigo-500"} flex items-center justify-center`}>
@@ -86,34 +80,30 @@ const ModelSettings = () => {
               </div>
               <ChevronDown className="h-4 w-4 opacity-70" />
             </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[340px] p-0 bg-background/95 backdrop-blur-md border-purple-500/20 shadow-lg shadow-purple-500/10">
-            <Command>
-              <CommandInput placeholder="Search models..." className="border-none focus:ring-0" />
-              <CommandEmpty>No model found.</CommandEmpty>
-              <CommandGroup className="p-2">
-                {modelOptions.map((model) => (
-                  <CommandItem 
-                    key={model.value}
-                    onSelect={() => setSelectedModel(model.value)}
-                    className={`flex items-center gap-3 px-3 py-3 rounded-lg cursor-pointer ${selectedModel === model.value ? 'bg-purple-500/10 border-l-2 border-purple-500' : ''}`}
-                  >
-                    <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${model.color} flex items-center justify-center`}>
-                      <Bot size={16} className="text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-medium">{model.label}</p>
-                      <p className="text-xs text-muted-foreground">{model.description}</p>
-                    </div>
-                    {selectedModel === model.value && (
-                      <div className="h-2 w-2 rounded-full bg-purple-500"></div>
-                    )}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </Command>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </PopoverTrigger>
+          <PopoverContent className="w-[340px] p-4 bg-background/95 backdrop-blur-md border-purple-500/20 shadow-lg shadow-purple-500/10">
+            <div className="space-y-2">
+              {modelOptions.map((model) => (
+                <button 
+                  key={model.value}
+                  onClick={() => setSelectedModel(model.value)}
+                  className={`flex items-center gap-3 px-3 py-3 rounded-lg w-full text-left cursor-pointer hover:bg-purple-500/10 ${selectedModel === model.value ? 'bg-purple-500/10 border-l-2 border-purple-500' : ''}`}
+                >
+                  <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${model.color} flex items-center justify-center`}>
+                    <Bot size={16} className="text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-medium">{model.label}</p>
+                    <p className="text-xs text-muted-foreground">{model.description}</p>
+                  </div>
+                  {selectedModel === model.value && (
+                    <div className="h-2 w-2 rounded-full bg-purple-500"></div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
       
       {/* Temperature Slider */}
