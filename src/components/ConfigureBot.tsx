@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react';
 
 const ConfigureBot: React.FC = () => {
   return (
-    <div className="my-8">
+    <div className="p-6 space-y-8">
       <div className="bg-card border border-border rounded-xl p-6">
         <div className="mb-4 flex justify-between">
           <h3 className="text-lg text-foreground font-medium">AI Actions</h3>
@@ -22,7 +22,7 @@ const ConfigureBot: React.FC = () => {
         </div>
       </div>
       
-      <div className="bg-card border border-border rounded-xl p-6 mt-8">
+      <div className="bg-card border border-border rounded-xl p-6">
         <div className="mb-4">
           <h3 className="text-lg text-foreground font-medium">System prompt</h3>
         </div>
