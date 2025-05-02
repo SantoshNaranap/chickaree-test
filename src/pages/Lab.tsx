@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -55,7 +56,7 @@ const Lab = () => {
   ];
 
   return (
-    <div className="flex h-screen bg-gradient-to-b from-[#111111] to-[#1a1a24] text-white">
+    <div className="flex h-screen bg-background text-foreground">
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -68,7 +69,7 @@ const Lab = () => {
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
                 {dataSources.map((source) => (
-                  <Card key={source.id} className={`border-gray-800 ${source.active ? 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]' : 'bg-[#1e1e1e]'}`}>
+                  <Card key={source.id} className={`border-border ${source.active ? 'bg-gradient-to-r from-oralia-light-purple to-oralia-purple' : 'bg-card'}`}>
                     <CardContent className="p-4">
                       <div className="flex items-start mb-4">
                         <input 
@@ -93,11 +94,11 @@ const Lab = () => {
                               <div className="bg-amber-600 text-white text-xs px-2 py-1 rounded-md">Yet To Start</div>
                             )}
                           </div>
-                          <p className="text-gray-400 text-sm truncate font-light">{source.url}</p>
+                          <p className="text-muted-foreground text-sm truncate font-light">{source.url}</p>
                         </div>
                       </div>
                       
-                      <div className="grid grid-cols-3 gap-4 text-xs text-gray-400 pt-2 border-t border-gray-800">
+                      <div className="grid grid-cols-3 gap-4 text-xs text-muted-foreground pt-2 border-t border-border">
                         <div>
                           <span className="block font-medium mb-1">Date Added:</span>
                           <span className="font-light">{source.dateAdded}</span>
@@ -119,14 +120,14 @@ const Lab = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                 <div className="flex flex-col">
                   <h2 className="text-2xl font-light mb-4">Configure Bot</h2>
-                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg flex-grow">
+                  <div className="bg-card border border-border rounded-lg flex-grow">
                     <ConfigureBot />
                   </div>
                 </div>
 
                 <div className="flex flex-col">
                   <h2 className="text-2xl font-light mb-4">Model Settings</h2>
-                  <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg flex-grow">
+                  <div className="bg-card border border-border rounded-lg flex-grow">
                     <div className="p-6 h-full">
                       <ModelSettings />
                     </div>
@@ -138,7 +139,7 @@ const Lab = () => {
             </div>
             
             <div className="flex flex-col h-full">
-              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg flex-grow">
+              <div className="bg-card border border-border rounded-lg flex-grow">
                 <div className="p-6 h-full flex flex-col">
                   <div className="flex-grow h-full">
                     <Concierge />

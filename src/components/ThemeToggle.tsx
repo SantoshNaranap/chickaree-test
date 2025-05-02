@@ -23,6 +23,7 @@ const ThemeToggle = () => {
     setTheme(newTheme);
     toast({
       title: `${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} theme activated`,
+      description: `Application appearance updated to ${newTheme} mode`,
       duration: 1500,
     });
   };
@@ -30,14 +31,14 @@ const ThemeToggle = () => {
   return (
     <Toggle
       aria-label="Toggle theme"
-      className="mr-2 p-2 border-gray-700"
+      className="mr-2 p-2 border-border bg-background hover:bg-secondary transition-colors"
       pressed={theme === "light"}
       onPressedChange={toggleTheme}
     >
       {theme === "dark" ? (
-        <Sun className="h-4 w-4 text-gray-300" />
+        <Sun className="h-4 w-4 text-foreground" />
       ) : (
-        <Moon className="h-4 w-4 text-gray-600" />
+        <Moon className="h-4 w-4 text-foreground" />
       )}
     </Toggle>
   );
