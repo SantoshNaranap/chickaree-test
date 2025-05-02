@@ -5,6 +5,38 @@
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+    
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 240 5.9% 10%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -41,12 +73,12 @@
   }
 
   body {
-    @apply bg-oralia-dark text-foreground;
+    @apply bg-background text-foreground dark:bg-oralia-dark;
   }
 }
 
 .data-source-card {
-  @apply bg-oralia-dark-gray rounded-xl p-4 border border-oralia-light-gray;
+  @apply bg-white dark:bg-oralia-dark-gray rounded-xl p-4 border border-gray-200 dark:border-oralia-light-gray;
 }
 
 .data-source-card.active {
@@ -62,5 +94,6 @@
 }
 
 .message-input {
-  @apply bg-oralia-light-gray rounded-full border border-gray-700 px-4 py-2 text-white w-full focus:outline-none focus:ring-2 focus:ring-oralia-purple;
+  @apply bg-gray-100 dark:bg-oralia-light-gray rounded-full border border-gray-300 dark:border-gray-700 px-4 py-2 text-gray-800 dark:text-white w-full focus:outline-none focus:ring-2 focus:ring-oralia-purple;
 }
+
