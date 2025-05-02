@@ -13,15 +13,6 @@ const ThemeToggle = () => {
   // After mounting, we can access the window object safely
   useEffect(() => {
     setMounted(true);
-    
-    // Ensure the palette class is applied on component mount
-    const savedPalette = localStorage.getItem("theme-palette") || "system";
-    document.documentElement.classList.forEach(className => {
-      if (className.startsWith('palette-')) {
-        document.documentElement.classList.remove(className);
-      }
-    });
-    document.documentElement.classList.add(`palette-${savedPalette}`);
   }, []);
 
   if (!mounted) {

@@ -26,6 +26,12 @@ const AppContent = () => {
       }
     });
     document.documentElement.classList.add(`palette-${savedPalette}`);
+    
+    // Force a rerender to ensure theme is applied
+    document.body.style.display = 'none';
+    setTimeout(() => {
+      document.body.style.display = '';
+    }, 50);
   }, []);
 
   return (

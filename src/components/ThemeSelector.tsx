@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Palette } from "lucide-react";
@@ -111,7 +112,19 @@ const ThemeSelector = () => {
       }
     });
     document.documentElement.classList.add(`palette-${savedPalette}`);
-  }, []);
+    
+    // Apply appropriate theme based on palette
+    const paletteInfo = PALETTES[savedPalette as keyof typeof PALETTES];
+    if (paletteInfo) {
+      if (savedPalette === "system") {
+        setTheme("system");
+      } else if (paletteInfo.type === "dark" || paletteInfo.type === "monochrome") {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+    }
+  }, [setTheme]);
   
   if (!mounted) {
     return null;
