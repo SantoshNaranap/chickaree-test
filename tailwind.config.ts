@@ -66,13 +66,13 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				oralia: {
-					purple: '#6d28d9',
-					'light-purple': '#8b5cf6',
-					green: '#10b981',
-					dark: '#121212',
-					'dark-gray': '#1e1e1e',
-					'light-gray': '#2e2e2e',
-					'text-gray': '#9ca3af'
+					purple: '#8B5CF6',  // Brightened from #6d28d9
+					'light-purple': '#A78BFA', // Brightened from #8b5cf6
+					green: '#10B981',
+					dark: '#18181B', // Slightly lighter than #121212
+					'dark-gray': '#27272A', // Slightly lighter than #1e1e1e
+					'light-gray': '#3F3F46', // Slightly lighter than #2e2e2e
+					'text-gray': '#A1A1AA'  // Slightly lighter than #9ca3af
 				}
 			},
 			borderRadius: {
