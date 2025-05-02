@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -11,6 +10,7 @@ import { Check, RefreshCw, Filter, Plus, ExternalLink, Trash2 } from 'lucide-rea
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import DataSource from '../components/DataSource';
+import { Link } from 'react-router-dom';
 
 interface DataSource {
   id: string;
@@ -116,7 +116,11 @@ const Sources = () => {
                   <h1 className="text-2xl font-light">Your Data Sources</h1>
                   <p className="text-muted-foreground">Connect and manage your knowledge sources</p>
                 </div>
-                <Button className="bg-card hover:bg-muted border border-border text-foreground">
+                <Button 
+                  className="bg-card hover:bg-muted border border-border text-foreground"
+                  as={Link}
+                  to="/sources/add"
+                >
                   <Plus className="mr-2" size={18} />
                   Add New Data Source
                 </Button>
