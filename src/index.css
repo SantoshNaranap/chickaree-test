@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -492,5 +493,19 @@
     --muted-foreground: 210 10% 40%;
     --accent: 225 95% 59%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive
+    --destructive: 0 84.2% 60.2%;  /* #EF4444 */
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 10% 20%;
+    --input: 210 10% 20%;
+    --ring: 225 95% 59%;
+    
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 210 10% 15%;
+    --sidebar-primary: 225 95% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 10% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 210 10% 20%;
+    --sidebar-ring: 225 95% 59%;
+  }
+}
