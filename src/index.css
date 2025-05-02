@@ -1,76 +1,75 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Default Light Theme - Brightened */
+  /* Default Light Theme - Using your provided colors */
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 222.2 47.4% 11.2%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 222.2 47.4% 11.2%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 240 5.9% 10%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 239 84% 67%;  /* #6366F1 */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 160 84% 39%;  /* #10B981 */
+    --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 220 40% 94%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 262 83% 76%;  /* #A78BFA */
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;  /* #EF4444 */
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 239 84% 67%;  /* #6366F1 */
     --radius: 0.5rem;
     
     --sidebar-background: 210 40% 97%;
-    --sidebar-foreground: 240 5.9% 10%;
-    --sidebar-primary: 224.3 76.3% 54%;
+    --sidebar-foreground: 222.2 47.4% 11.2%;
+    --sidebar-primary: 239 84% 67%;  /* #6366F1 */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 240 5.9% 90%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 262 83% 76%;  /* #A78BFA */
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 239 84% 67%;  /* #6366F1 */
   }
 
-  /* Default Dark Theme - Brightened */
+  /* Default Dark Theme - Using your provided colors */
   .dark {
-    --background: 240 10% 9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 13%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 20%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 20%;
-    --muted-foreground: 240 5% 70%;
-    --accent: 240 3.7% 20%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 20%;
-    --input: 240 3.7% 20%;
-    --ring: 240 4.9% 83.9%;
+    --background: 224 71% 4%;  /* #111827 */
+    --foreground: 210 40% 98%;  /* #F9FAFB */
+    --card: 215 28% 17%;  /* #1F2937 */
+    --card-foreground: 210 40% 98%;  /* #F9FAFB */
+    --popover: 224 71% 4%;  /* #111827 */
+    --popover-foreground: 210 40% 98%;  /* #F9FAFB */
+    --primary: 239 84% 67%;  /* #6366F1 */
+    --primary-foreground: 210 40% 98%;  /* #F9FAFB */
+    --secondary: 160 84% 39%;  /* #10B981 */
+    --secondary-foreground: 210 40% 98%;  /* #F9FAFB */
+    --muted: 215 28% 17%;  /* #1F2937 */
+    --muted-foreground: 217.2 32.6% 65%;  /* #9CA3AF */
+    --accent: 262 83% 76%;  /* #A78BFA */
+    --accent-foreground: 210 40% 98%;  /* #F9FAFB */
+    --destructive: 0 84.2% 60.2%;  /* #EF4444 */
+    --destructive-foreground: 210 40% 98%;  /* #F9FAFB */
+    --border: 215 28% 25%;  /* slightly lighter than #1F2937 */
+    --input: 215 28% 25%;  /* slightly lighter than #1F2937 */
+    --ring: 239 84% 67%;  /* #6366F1 */
     --radius: 0.5rem;
     
-    --sidebar-background: 240 5.9% 12%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 58%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 20%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 20%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 224 71% 6%;  /* slightly lighter than #111827 */
+    --sidebar-foreground: 210 40% 98%;  /* #F9FAFB */
+    --sidebar-primary: 239 84% 67%;  /* #6366F1 */
+    --sidebar-primary-foreground: 210 40% 98%;  /* #F9FAFB */
+    --sidebar-accent: 262 83% 76%;  /* #A78BFA */
+    --sidebar-accent-foreground: 210 40% 98%;  /* #F9FAFB */
+    --sidebar-border: 215 28% 25%;  /* slightly lighter than #1F2937 */
+    --sidebar-ring: 239 84% 67%;  /* #6366F1 */
   }
 
-  /* Dark Palettes - Brightened */
+  /* Keep all the palette variants but update their colors to match your new scheme */
   .palette-midnight {
     --background: 230 74% 6%;
     --foreground: 210 50% 98%;
@@ -494,46 +493,4 @@
     --accent: 225 95% 59%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 225 95% 59%;
-    
-    --sidebar-background: 0 0% 95%;
-    --sidebar-foreground: 210 10% 15%;
-    --sidebar-primary: 225 95% 59%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 10% 15%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 85%;
-    --sidebar-ring: 225 95% 59%;
-  }
-
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground dark:bg-oralia-dark;
-  }
-}
-
-.data-source-card {
-  @apply bg-white dark:bg-oralia-dark-gray rounded-xl p-4 border border-gray-200 dark:border-oralia-light-gray;
-}
-
-.data-source-card.active {
-  @apply bg-gradient-to-r from-oralia-purple to-oralia-light-purple;
-}
-
-.trained-badge {
-  @apply bg-oralia-green text-white text-xs px-2 py-1 rounded-md flex items-center gap-1;
-}
-
-.yet-to-start-badge {
-  @apply bg-amber-600 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1;
-}
-
-.message-input {
-  @apply bg-gray-100 dark:bg-oralia-light-gray rounded-full border border-gray-300 dark:border-gray-700 px-4 py-2 text-gray-800 dark:text-white w-full focus:outline-none focus:ring-2 focus:ring-oralia-purple;
-}
+    --destructive
