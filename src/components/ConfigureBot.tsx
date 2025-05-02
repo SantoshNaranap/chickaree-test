@@ -6,8 +6,6 @@ import { Plus } from 'lucide-react';
 const ConfigureBot: React.FC = () => {
   return (
     <div className="my-8">
-      <h2 className="text-xl text-white font-medium mb-4">Configure Bot</h2>
-      
       <div className="bg-oralia-dark-gray rounded-xl p-6">
         <div className="mb-2 flex justify-between">
           <h3 className="text-lg text-white font-medium">AI Actions</h3>
