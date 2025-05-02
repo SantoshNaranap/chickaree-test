@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Filter, Eye, Edit, Trash2, BarChart } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import BotsList from './BotsList';
 import AnalyticsSection from './AnalyticsSection';
@@ -9,7 +9,7 @@ import AuditTable from './AuditTable';
 const BotManagement = () => {
   return (
     <div className="space-y-6">
-      <div className="bg-oralia-dark-gray rounded-lg border border-oralia-light-gray p-4">
+      <div className="bg-oralia-dark-gray rounded-xl border border-oralia-light-gray p-4">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-medium">Your Bots</h2>
           <div className="flex space-x-2">
@@ -45,7 +45,7 @@ const BotManagement = () => {
         />
       </div>
       
-      <div className="bg-oralia-dark-gray rounded-lg border border-oralia-light-gray p-4">
+      <div className="bg-oralia-dark-gray rounded-xl border border-oralia-light-gray p-4">
         <h2 className="text-xl font-medium mb-4">Audit Information Table</h2>
         <AuditTable />
       </div>

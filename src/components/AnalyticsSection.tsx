@@ -14,7 +14,7 @@ interface AnalyticsSectionProps {
 
 const AnalyticsSection: React.FC<AnalyticsSectionProps> = ({ title, data }) => {
   return (
-    <div className="bg-oralia-dark-gray rounded-lg border border-oralia-light-gray p-4">
+    <div className="bg-oralia-dark-gray rounded-xl border border-oralia-light-gray p-4">
       <h2 className="text-xl font-medium mb-4">{title}</h2>
       <div className="space-y-4">
         {data.map((item) => (

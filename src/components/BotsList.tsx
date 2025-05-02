@@ -50,10 +50,10 @@ const BotsList: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
       {bots.map((bot) => (
-        <div key={bot.id} className="border border-oralia-light-gray bg-[#151A29] rounded-md p-4">
+        <div key={bot.id} className="border border-oralia-light-gray bg-[#151A29] rounded-xl p-4">
           <div className="flex justify-between items-start mb-2">
             <h3 className="font-medium text-lg">{bot.name}</h3>
-            <span className={`text-xs px-2 py-1 rounded ${bot.status === 'Active' ? 'bg-green-700' : 'bg-gray-600'}`}>
+            <span className={`text-xs px-2 py-1 rounded-full ${bot.status === 'Active' ? 'bg-oralia-green' : 'bg-gray-600'}`}>
               {bot.status}
             </span>
           </div>
@@ -78,13 +78,13 @@ const BotsList: React.FC = () => {
             </div>
           </div>
           <div className="flex justify-center space-x-4 pt-2 border-t border-oralia-light-gray">
-            <button className="text-gray-400 hover:text-white">
+            <button className="text-gray-400 hover:text-oralia-purple">
               <Eye className="w-4 h-4" />
             </button>
-            <button className="text-gray-400 hover:text-white">
+            <button className="text-gray-400 hover:text-oralia-purple">
               <Edit className="w-4 h-4" />
             </button>
-            <button className="text-gray-400 hover:text-white">
+            <button className="text-gray-400 hover:text-oralia-purple">
               <Trash2 className="w-4 h-4" />
             </button>
           </div>
