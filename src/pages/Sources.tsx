@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -10,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Check, RefreshCw, Filter, Plus, ExternalLink, Trash2 } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import DataSource from '../components/DataSource';
 
 interface DataSource {
   id: string;
@@ -107,78 +107,42 @@ const Sources = () => {
         <Header />
         
         <div className="flex-1 overflow-y-auto p-6">
-          <div className="flex flex-col space-y-6 lg:space-y-0 lg:flex-row lg:gap-6">
-            {/* Left column - Data sources grid */}
-            <div className="lg:w-1/2">
-              <div className="mb-2">
+          <div className="flex flex-col space-y-6">
+            {/* Data sources grid section */}
+            <div className="w-full">
+              <div className="mb-4">
                 <h1 className="text-2xl font-light">Your Data Sources</h1>
                 <p className="text-muted-foreground">Connect and manage your knowledge sources</p>
               </div>
               
-              <div className="space-y-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                 {dataSources.map(source => (
-                  <Card 
-                    key={source.id} 
-                    className={`border-border transition-all ${source.active ? 'bg-gradient-to-r from-oralia-light-purple to-oralia-purple' : 'bg-card'}`}
-                  >
-                    <CardContent className="p-4">
-                      <div className="flex items-start mb-4">
-                        <input 
-                          type="radio" 
-                          id={source.id} 
-                          name="dataSource" 
-                          checked={source.active} 
-                          className="mt-1 mr-3"
-                          onChange={() => handleSourceSelect(source)}
-                        />
-                        <div className="flex-grow">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xl">{source.type === 'Website' ? '🌐' : '📄'}</span>
-                              <h3 className="text-lg font-light">{source.name}</h3>
-                            </div>
-                            {source.status === 'Trained' ? (
-                              <div className="bg-oralia-green text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
-                                <Check className="w-3 h-3" /> Trained
-                              </div>
-                            ) : (
-                              <div className="bg-amber-600 text-white text-xs px-2 py-1 rounded-md">Yet To Start</div>
-                            )}
-                          </div>
-                          <p className="text-muted-foreground text-sm truncate font-light">{source.url}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-3 gap-4 text-xs text-muted-foreground pt-2 border-t border-border">
-                        <div>
-                          <span className="block font-medium mb-1">Date Added:</span>
-                          <span className="font-light">{source.dateAdded}</span>
-                        </div>
-                        <div>
-                          <span className="block font-medium mb-1">Source Type:</span>
-                          <span className="font-light">{source.type}</span>
-                        </div>
-                        <div>
-                          <span className="block font-medium mb-1">{source.type === 'Website' ? 'Links:' : 'Files:'}</span>
-                          <span className="font-light">{source.count}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div key={source.id} onClick={() => handleSourceSelect(source)} className="cursor-pointer">
+                    <DataSource 
+                      id={source.id}
+                      name={source.name}
+                      url={source.url}
+                      dateAdded={source.dateAdded}
+                      type={source.type}
+                      status={source.status}
+                      count={source.count}
+                      active={source.active}
+                    />
+                  </div>
                 ))}
               </div>
               
-              <Button className="w-full bg-card hover:bg-muted border border-border text-foreground">
+              <Button className="w-full md:w-auto bg-card hover:bg-muted border border-border text-foreground">
                 <Plus className="mr-2" size={18} />
                 Add New Data Source
               </Button>
             </div>
             
-            {/* Right column - Source editor */}
-            <div className="lg:w-1/2">
+            {/* Source editor section - now below the grid */}
+            <div className="w-full mt-8">
               {selectedSource ? (
-                <Card className="border-border bg-card h-full">
-                  <CardContent className="p-6 flex flex-col h-full">
+                <Card className="border-border bg-card w-full">
+                  <CardContent className="p-6">
                     <div className="flex justify-between items-center mb-6">
                       <div>
                         <h2 className="text-xl font-medium">Data Source Details</h2>
@@ -186,45 +150,72 @@ const Sources = () => {
                       <Button className="bg-blue-500 hover:bg-blue-600">Update</Button>
                     </div>
                     
-                    <div className="space-y-6 flex-grow">
-                      <div>
-                        <Label htmlFor="name">Data Source Name</Label>
-                        <Input 
-                          id="name" 
-                          value={selectedSource.name} 
-                          className="mt-1" 
-                          readOnly 
-                        />
-                      </div>
-                      
-                      <div className="space-y-1">
-                        <Label className="block">{selectedSource.type}</Label>
-                        <Input 
-                          value={selectedSource.url} 
-                          className="bg-background"
-                          readOnly
-                        />
-                        {selectedSource.lastTrained && (
-                          <p className="text-xs text-muted-foreground mt-1">
-                            Last trained on {selectedSource.lastTrained} with {selectedSource.count} links
-                          </p>
+                    <div className="space-y-6 grid md:grid-cols-2 gap-8">
+                      <div className="space-y-6">
+                        <div>
+                          <Label htmlFor="name">Data Source Name</Label>
+                          <Input 
+                            id="name" 
+                            value={selectedSource.name} 
+                            className="mt-1" 
+                            readOnly 
+                          />
+                        </div>
+                        
+                        <div className="space-y-1">
+                          <Label className="block">{selectedSource.type}</Label>
+                          <Input 
+                            value={selectedSource.url} 
+                            className="bg-background"
+                            readOnly
+                          />
+                          {selectedSource.lastTrained && (
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Last trained on {selectedSource.lastTrained} with {selectedSource.count} links
+                            </p>
+                          )}
+                        </div>
+                        
+                        {selectedSource.type === 'Website' && (
+                          <div className="bg-muted/30 rounded-md p-4">
+                            <div className="flex items-center text-sm">
+                              <div className="w-5 h-5 bg-blue-500/10 rounded-full flex items-center justify-center mr-2">
+                                <div className="w-3 h-3 text-blue-500">🔍</div>
+                              </div>
+                              <p>This will crawl all the links starting with {selectedSource.url} (not including files on the website)</p>
+                              <Button variant="outline" size="sm" className="ml-auto">
+                                <RefreshCw size={14} className="mr-1" />
+                                Re-Fetch
+                              </Button>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {selectedSource.characters && (
+                          <div className="mt-6 pt-4 border-t border-border">
+                            <h3 className="font-medium mb-2">Sources</h3>
+                            <div className="space-y-1 text-sm">
+                              <div className="flex justify-between">
+                                <span>Links: </span>
+                                <span>{selectedSource.count}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span>Detected Characters: </span>
+                                <span>{selectedSource.characters.toLocaleString()}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span>Total Detected Characters: </span>
+                                <span>{selectedSource.characters.toLocaleString()}</span>
+                              </div>
+                            </div>
+                            
+                            <div className="mt-4 bg-oralia-green rounded-md p-3 flex items-center justify-center">
+                              <Check className="mr-2" size={18} />
+                              <span>Trained</span>
+                            </div>
+                          </div>
                         )}
                       </div>
-                      
-                      {selectedSource.type === 'Website' && (
-                        <div className="bg-muted/30 rounded-md p-4">
-                          <div className="flex items-center text-sm">
-                            <div className="w-5 h-5 bg-blue-500/10 rounded-full flex items-center justify-center mr-2">
-                              <div className="w-3 h-3 text-blue-500">🔍</div>
-                            </div>
-                            <p>This will crawl all the links starting with {selectedSource.url} (not including files on the website)</p>
-                            <Button variant="outline" size="sm" className="ml-auto">
-                              <RefreshCw size={14} className="mr-1" />
-                              Re-Fetch
-                            </Button>
-                          </div>
-                        </div>
-                      )}
                       
                       {selectedSource.links && selectedSource.links.length > 0 && (
                         <div>
@@ -289,36 +280,11 @@ const Sources = () => {
                         </div>
                       )}
                     </div>
-                    
-                    {selectedSource.characters && (
-                      <div className="mt-6 pt-4 border-t border-border">
-                        <h3 className="font-medium mb-2">Sources</h3>
-                        <div className="space-y-1 text-sm">
-                          <div className="flex justify-between">
-                            <span>Links: </span>
-                            <span>{selectedSource.count}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span>Detected Characters: </span>
-                            <span>{selectedSource.characters.toLocaleString()}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span>Total Detected Characters: </span>
-                            <span>{selectedSource.characters.toLocaleString()}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="mt-4 bg-oralia-green rounded-md p-3 flex items-center justify-center">
-                          <Check className="mr-2" size={18} />
-                          <span>Trained</span>
-                        </div>
-                      </div>
-                    )}
                   </CardContent>
                 </Card>
               ) : (
-                <Card className="border-border bg-card h-full">
-                  <CardContent className="p-6 flex flex-col items-center justify-center h-full text-center">
+                <Card className="border-border bg-card w-full">
+                  <CardContent className="p-6 flex flex-col items-center justify-center h-32 text-center">
                     <div className="text-muted-foreground">
                       <h3 className="text-xl font-light mb-2">No Data Source Selected</h3>
                       <p>Please select a data source to view and edit its details</p>
