@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   if (currentPath === '/bots') title = "Your Bots";
   else if (currentPath === '/sources') title = "Sources";
   else if (currentPath === '/subscriptions') title = "Subscriptions";
-  else if (currentPath === '/settings') title = "Settings";
+  else if (currentPath === '/settings') title = "Simulation Space";
 
   return (
     <header className="bg-oralia-dark dark:bg-oralia-dark flex items-center justify-between p-4 border-b border-oralia-light-gray">

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Database, Settings, File, Settings as SettingsIcon } from 'lucide-react';
+import { Search, Database, Settings as SettingsIcon, File } from 'lucide-react';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -77,7 +77,7 @@ const Sidebar = () => {
               <div className="w-6 h-6 mr-3 flex items-center justify-center">
                 <SettingsIcon className="w-5 h-5" />
               </div>
-              <span>Settings</span>
+              <span>Simulation Space</span>
             </Link>
           </li>
         </ul>
