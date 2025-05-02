@@ -22,12 +22,12 @@ const ConfigureBot: React.FC = () => {
         </div>
       </div>
       
-      <div className="bg-card border border-border rounded-xl p-6 mt-6">
+      <div className="bg-card border border-border rounded-xl p-6 mt-8">
         <div className="mb-4">
           <h3 className="text-lg text-foreground font-medium">System prompt</h3>
         </div>
         
-        <div className="bg-secondary rounded-lg p-4 h-24 my-2">
+        <div className="bg-secondary rounded-lg p-6 h-24 my-4">
           <p className="text-muted-foreground">You are a helpful AI assistant. Your responses should be...</p>
         </div>
       </div>

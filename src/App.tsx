@@ -25,12 +25,14 @@ const AppContent = () => {
         document.documentElement.classList.remove(className);
       }
     });
+    
+    // Add the palette class
     document.documentElement.classList.add(`palette-${savedPalette}`);
     
-    // Force a rerender to ensure theme is applied
-    document.body.style.display = 'none';
+    // Force browser to recalculate styles
+    document.body.style.visibility = 'hidden';
     setTimeout(() => {
-      document.body.style.display = '';
+      document.body.style.visibility = 'visible';
     }, 50);
   }, []);
 

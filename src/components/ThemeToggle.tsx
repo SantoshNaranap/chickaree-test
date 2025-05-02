@@ -30,11 +30,11 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-2">
       <ThemeSelector />
       <Toggle
         aria-label="Toggle theme"
-        className="p-2 border-border bg-background hover:bg-secondary transition-colors"
+        className="border-border bg-background hover:bg-secondary transition-colors"
         pressed={theme === "light"}
         onPressedChange={toggleTheme}
       >

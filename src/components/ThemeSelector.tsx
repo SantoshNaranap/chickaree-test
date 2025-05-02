@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Palette } from "lucide-react";
@@ -14,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
 
+// Define palettes with their properties
 export const PALETTES = {
   // Dark Palettes
   midnight: {
@@ -101,22 +101,34 @@ const ThemeSelector = () => {
   // After mounting, we can access the window object safely
   useEffect(() => {
     setMounted(true);
+    
     // Get palette from localStorage or use default
     const savedPalette = localStorage.getItem("theme-palette") || "system";
     setPalette(savedPalette);
     
     // Apply the palette class to the document on mount
+    applyPaletteClass(savedPalette);
+    
+    // Apply appropriate theme based on palette
+    applyThemeBasedOnPalette(savedPalette);
+  }, [setTheme]);
+  
+  const applyPaletteClass = (paletteKey: string) => {
+    // Remove any existing palette classes
     document.documentElement.classList.forEach(className => {
       if (className.startsWith('palette-')) {
         document.documentElement.classList.remove(className);
       }
     });
-    document.documentElement.classList.add(`palette-${savedPalette}`);
     
-    // Apply appropriate theme based on palette
-    const paletteInfo = PALETTES[savedPalette as keyof typeof PALETTES];
+    // Add the new palette class
+    document.documentElement.classList.add(`palette-${paletteKey}`);
+  };
+  
+  const applyThemeBasedOnPalette = (paletteKey: string) => {
+    const paletteInfo = PALETTES[paletteKey as keyof typeof PALETTES];
     if (paletteInfo) {
-      if (savedPalette === "system") {
+      if (paletteKey === "system") {
         setTheme("system");
       } else if (paletteInfo.type === "dark" || paletteInfo.type === "monochrome") {
         setTheme("dark");
@@ -124,7 +136,7 @@ const ThemeSelector = () => {
         setTheme("light");
       }
     }
-  }, [setTheme]);
+  };
   
   if (!mounted) {
     return null;
@@ -134,25 +146,11 @@ const ThemeSelector = () => {
     setPalette(value);
     localStorage.setItem("theme-palette", value);
     
-    // Set the appropriate theme (light/dark) based on palette type
-    const paletteInfo = PALETTES[value as keyof typeof PALETTES];
-    if (paletteInfo) {
-      if (value === "system") {
-        setTheme("system");
-      } else if (paletteInfo.type === "dark" || paletteInfo.type === "monochrome") {
-        setTheme("dark");
-      } else {
-        setTheme("light");
-      }
-    }
+    // Apply the palette class
+    applyPaletteClass(value);
     
-    // Apply the palette class to the document
-    document.documentElement.classList.forEach(className => {
-      if (className.startsWith('palette-')) {
-        document.documentElement.classList.remove(className);
-      }
-    });
-    document.documentElement.classList.add(`palette-${value}`);
+    // Set the appropriate theme (light/dark) based on palette type
+    applyThemeBasedOnPalette(value);
     
     toast({
       title: `${PALETTES[value as keyof typeof PALETTES]?.name || "Theme"} applied`,
@@ -186,7 +184,7 @@ const ThemeSelector = () => {
         <Button 
           variant="outline" 
           size="icon"
-          className="mr-2 border-border bg-background hover:bg-secondary transition-colors"
+          className="border-border bg-background hover:bg-secondary transition-colors"
         >
           <Palette className="h-4 w-4 text-foreground" />
           <span className="sr-only">Select color palette</span>
