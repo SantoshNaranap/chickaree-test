@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import DataSource from '../components/DataSource';
@@ -11,6 +11,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
+  const [activeSource, setActiveSource] = useState<string>('1');
+  
   const dataSources = [
     {
       id: '1',
@@ -54,6 +56,10 @@ const Index = () => {
     },
   ];
 
+  const handleSourceClick = (sourceId: string) => {
+    setActiveSource(sourceId);
+  };
+
   return (
     <div className="flex h-screen bg-oralia-dark text-white">
       <Sidebar />
@@ -80,7 +86,18 @@ const Index = () => {
                 <CardContent>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {dataSources.map((source) => (
-                      <DataSource key={source.id} {...source} />
+                      <DataSource 
+                        key={source.id}
+                        id={source.id}
+                        name={source.name}
+                        url={source.url}
+                        dateAdded={source.dateAdded}
+                        type={source.type}
+                        status={source.status}
+                        count={source.count}
+                        active={source.id === activeSource}
+                        onClick={() => handleSourceClick(source.id)}
+                      />
                     ))}
                   </div>
                 </CardContent>
