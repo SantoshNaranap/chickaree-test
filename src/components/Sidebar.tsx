@@ -19,7 +19,7 @@ const Sidebar = () => {
             <Link 
               to="/lab" 
               className={`flex items-center px-4 py-2 rounded-md hover:bg-oralia-light-gray ${
-                currentPath === '/lab' || currentPath === '/' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
+                currentPath === '/lab' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
               }`}
             >
               <div className="w-6 h-6 mr-3 flex items-center justify-center">
@@ -43,7 +43,7 @@ const Sidebar = () => {
           </li>
           <li>
             <Link 
-              to="/" 
+              to="/sources" 
               className={`flex items-center px-4 py-2 rounded-md hover:bg-oralia-light-gray ${
                 currentPath === '/sources' ? 'text-white bg-oralia-light-gray' : 'text-gray-400'
               }`}
