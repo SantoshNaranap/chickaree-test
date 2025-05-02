@@ -11,7 +11,7 @@ const Header: React.FC = () => {
         <button className="text-gray-400 mr-4 hover:text-white">
           <Menu className="w-6 h-6" />
         </button>
-        <h1 className="text-xl text-white font-medium">Sources</h1>
+        <h1 className="text-xl text-white font-medium">Lab</h1>
       </div>
       
       <div className="flex items-center space-x-2">
