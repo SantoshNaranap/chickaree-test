@@ -11,46 +11,10 @@ const Sources = () => {
 
   // Dummy data for sources
   const sources = [
-    { 
-      id: '1', 
-      name: 'Knowledge Base', 
-      type: 'PDF', 
-      status: 'Connected', 
-      lastUpdated: '2 days ago',
-      url: 'https://docs.knowledge-base.com',
-      dateAdded: 'Apr 30, 2025',
-      count: 12
-    },
-    { 
-      id: '2', 
-      name: 'Company Website', 
-      type: 'Website', 
-      status: 'Trained', 
-      lastUpdated: '5 days ago',
-      url: 'https://company-website.com',
-      dateAdded: 'Apr 25, 2025',
-      count: 8
-    },
-    { 
-      id: '3', 
-      name: 'Documentation', 
-      type: 'File', 
-      status: 'Yet To Start', 
-      lastUpdated: '1 week ago',
-      url: 'https://docs.example.com',
-      dateAdded: 'Apr 20, 2025',
-      count: 5
-    },
-    { 
-      id: '4', 
-      name: 'API Reference', 
-      type: 'Website', 
-      status: 'Trained', 
-      lastUpdated: '3 days ago',
-      url: 'https://api-docs.example.com',
-      dateAdded: 'Apr 27, 2025',
-      count: 15
-    },
+    { id: '1', name: 'Knowledge Base', type: 'PDF', status: 'Connected', lastUpdated: '2 days ago' },
+    { id: '2', name: 'Company Website', type: 'Web', status: 'Connected', lastUpdated: '5 days ago' },
+    { id: '3', name: 'Documentation', type: 'Text', status: 'Pending', lastUpdated: '1 week ago' },
+    { id: '4', name: 'API Reference', type: 'Web', status: 'Connected', lastUpdated: '3 days ago' },
   ];
 
   return (
@@ -70,14 +34,8 @@ const Sources = () => {
           {sources.map(source => (
             <DataSource 
               key={source.id}
-              id={source.id}
-              name={source.name}
-              url={source.url}
-              dateAdded={source.dateAdded}
-              type={source.type === 'Website' ? 'Website' : 'File'}
-              status={source.status === 'Trained' ? 'Trained' : 'Yet To Start'}
-              count={source.count}
-              active={selectedSource === source.id}
+              source={source}
+              isSelected={selectedSource === source.id}
               onClick={() => setSelectedSource(selectedSource === source.id ? null : source.id)}
             />
           ))}

@@ -12,7 +12,6 @@ interface DataSourceProps {
   status: 'Trained' | 'Yet To Start';
   count: number;
   active?: boolean;
-  onClick: () => void;
 }
 
 const DataSource: React.FC<DataSourceProps> = ({
@@ -24,13 +23,9 @@ const DataSource: React.FC<DataSourceProps> = ({
   status,
   count,
   active = false,
-  onClick,
 }) => {
   return (
-    <Card 
-      className={`border-gray-800 ${active ? 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]' : 'bg-[#1a1a24]'} transition-all hover:shadow-lg cursor-pointer`}
-      onClick={onClick}
-    >
+    <Card className={`border-gray-800 ${active ? 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]' : 'bg-[#1a1a24]'} transition-all hover:shadow-lg`}>
       <CardContent className="p-4">
         <div className="flex items-start mb-4">
           <input 
