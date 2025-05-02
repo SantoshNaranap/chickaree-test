@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Eye, Edit, Trash2 } from 'lucide-react';
 
 interface Bot {
@@ -12,6 +12,8 @@ interface Bot {
 }
 
 const BotsList: React.FC = () => {
+  const [selectedBot, setSelectedBot] = useState<string | null>(null);
+  
   const bots: Bot[] = [
     {
       id: '1',
@@ -47,14 +49,21 @@ const BotsList: React.FC = () => {
     },
   ];
 
+  const handleSelectBot = (botId: string) => {
+    setSelectedBot(botId === selectedBot ? null : botId);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       {bots.map((bot) => (
         <div 
           key={bot.id} 
-          className={`relative overflow-hidden border border-border/50 bg-background/70 backdrop-blur-sm rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 ${
+          className={`relative overflow-hidden border border-border/50 bg-background/70 backdrop-blur-sm rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer ${
             bot.status === 'Active' ? 'ring-1 ring-oralia-purple/30' : ''
+          } ${
+            selectedBot === bot.id ? 'ring-2 ring-oralia-light-purple bg-gradient-to-br from-oralia-purple/10 to-oralia-light-purple/5' : ''
           }`}
+          onClick={() => handleSelectBot(bot.id)}
         >
           {/* Decorative gradient elements */}
           <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-oralia-light-purple to-oralia-purple rounded-full opacity-10 blur-xl"></div>
@@ -62,8 +71,15 @@ const BotsList: React.FC = () => {
             <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-oralia-green to-emerald-600 rounded-full opacity-10 blur-xl"></div>
           )}
           
+          {/* Selection indicator */}
+          {selectedBot === bot.id && (
+            <div className="absolute inset-0 bg-gradient-to-br from-oralia-light-purple/20 to-transparent opacity-50 pointer-events-none"></div>
+          )}
+          
           <div className="flex justify-between items-start mb-3 relative z-10">
-            <h3 className="font-medium text-lg">{bot.name}</h3>
+            <h3 className={`font-medium text-lg ${selectedBot === bot.id ? 'text-oralia-light-purple' : ''}`}>
+              {bot.name}
+            </h3>
             <span className={`text-xs px-2.5 py-1 rounded-full ${
               bot.status === 'Active' 
                 ? 'bg-gradient-to-r from-oralia-green to-emerald-600 text-white' 
@@ -95,13 +111,13 @@ const BotsList: React.FC = () => {
           </div>
           
           <div className="flex justify-center space-x-6 pt-3 border-t border-border/30 relative z-10">
-            <button className="text-muted-foreground hover:text-oralia-purple transition-colors">
+            <button className={`${selectedBot === bot.id ? 'text-oralia-light-purple' : 'text-muted-foreground'} hover:text-oralia-purple transition-colors`} onClick={(e) => e.stopPropagation()}>
               <Eye className="w-4 h-4" />
             </button>
-            <button className="text-muted-foreground hover:text-oralia-purple transition-colors">
+            <button className={`${selectedBot === bot.id ? 'text-oralia-light-purple' : 'text-muted-foreground'} hover:text-oralia-purple transition-colors`} onClick={(e) => e.stopPropagation()}>
               <Edit className="w-4 h-4" />
             </button>
-            <button className="text-muted-foreground hover:text-oralia-purple transition-colors">
+            <button className={`${selectedBot === bot.id ? 'text-oralia-light-purple' : 'text-muted-foreground'} hover:text-oralia-purple transition-colors`} onClick={(e) => e.stopPropagation()}>
               <Trash2 className="w-4 h-4" />
             </button>
           </div>
