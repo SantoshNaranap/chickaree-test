@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -67,13 +66,13 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				oralia: {
-					purple: '#6366F1',  // Primary color
-					'light-purple': '#A78BFA', // Accent color
-					green: '#10B981',  // Secondary/Success color
-					dark: '#111827',  // Background color
-					'dark-gray': '#1F2937', // Surface color
-					'light-gray': '#374151', // Slightly lighter than surface
-					'text-gray': '#9CA3AF'  // Text secondary color
+					purple: '#6d28d9',
+					'light-purple': '#8b5cf6',
+					green: '#10b981',
+					dark: '#121212',
+					'dark-gray': '#1e1e1e',
+					'light-gray': '#2e2e2e',
+					'text-gray': '#9ca3af'
 				}
 			},
 			borderRadius: {
