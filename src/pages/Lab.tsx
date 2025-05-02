@@ -3,13 +3,57 @@ import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import ContentFooter from '../components/ContentFooter';
-import BogarAnalytics from '../components/BogarAnalytics';
 import { Button } from "@/components/ui/button";
-import { PlusCircle } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LabExperience from '../components/LabExperience';
+import { Plus, Check } from 'lucide-react';
+import { Card, CardContent } from "@/components/ui/card";
+import ModelSettings from '../components/ModelSettings';
+import { Textarea } from "@/components/ui/textarea";
+import ConfigureBot from '../components/ConfigureBot';
 
 const Lab = () => {
+  const dataSources = [
+    {
+      id: '1',
+      name: 'Mindera Website',
+      url: 'https://www.mindera.com',
+      dateAdded: 'Apr 22, 2023 5:38 PM',
+      type: 'Website',
+      status: 'Trained',
+      count: 61,
+      active: true,
+    },
+    {
+      id: '2',
+      name: 'nuware',
+      url: 'https://www.nuware.com',
+      dateAdded: 'Apr 22, 2023 7:39 AM',
+      type: 'Website',
+      status: 'Trained',
+      count: 117,
+      active: false,
+    },
+    {
+      id: '3',
+      name: 'Report',
+      url: 'Voucher_Report_Unknown (5).pdf',
+      dateAdded: 'Apr 7, 2023 11:40 AM',
+      type: 'File',
+      status: 'Yet To Start',
+      count: 1,
+      active: false,
+    },
+    {
+      id: '4',
+      name: 'Barcodes cat',
+      url: 'barcodes_catalog.pdf',
+      dateAdded: 'Apr 5, 2023 3:15 PM',
+      type: 'File',
+      status: 'Yet To Start',
+      count: 1,
+      active: false,
+    },
+  ];
+
   return (
     <div className="flex h-screen bg-gradient-to-b from-[#111111] to-[#1a1a24] text-white">
       <Sidebar />
@@ -18,59 +62,130 @@ const Lab = () => {
         <Header />
         
         <div className="flex-1 overflow-y-auto p-8">
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-light tracking-tight">Laboratory</h1>
-            <Button className="bg-white text-black hover:bg-gray-100 hover:text-black transition-all duration-300 rounded-full">
-              <PlusCircle className="w-4 h-4 mr-2" />
-              New Project
-            </Button>
-          </div>
-          
-          <div className="mb-8">
-            <Tabs defaultValue="experience" className="w-full">
-              <TabsList className="bg-transparent border-b border-gray-800 w-full justify-start rounded-none mb-6 p-0">
-                <TabsTrigger 
-                  value="experience" 
-                  className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-white rounded-none data-[state=active]:shadow-none px-6 py-2 text-lg"
-                >
-                  Experience
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="models" 
-                  className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-white rounded-none data-[state=active]:shadow-none px-6 py-2 text-lg"
-                >
-                  Models
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="analytics" 
-                  className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-white rounded-none data-[state=active]:shadow-none px-6 py-2 text-lg"
-                >
-                  Analytics
-                </TabsTrigger>
-              </TabsList>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <h2 className="text-2xl font-light mb-4">Data Sources</h2>
               
-              <TabsContent value="experience" className="mt-0">
-                <LabExperience />
-              </TabsContent>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+                {dataSources.map((source) => (
+                  <Card key={source.id} className={`border-gray-800 ${source.active ? 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]' : 'bg-[#1e1e1e]'}`}>
+                    <CardContent className="p-4">
+                      <div className="flex items-start mb-4">
+                        <input 
+                          type="radio" 
+                          id={source.id} 
+                          name="dataSource" 
+                          checked={source.active} 
+                          className="mt-1 mr-3"
+                          readOnly
+                        />
+                        <div className="flex-grow">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xl">{source.type === 'Website' ? '🌐' : '📄'}</span>
+                              <h3 className="text-lg font-light">{source.name}</h3>
+                            </div>
+                            {source.status === 'Trained' ? (
+                              <div className="bg-oralia-green text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+                                <Check className="w-3 h-3" /> Trained
+                              </div>
+                            ) : (
+                              <div className="bg-amber-600 text-white text-xs px-2 py-1 rounded-md">Yet To Start</div>
+                            )}
+                          </div>
+                          <p className="text-gray-400 text-sm truncate font-light">{source.url}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-3 gap-4 text-xs text-gray-400 pt-2 border-t border-gray-800">
+                        <div>
+                          <span className="block font-medium mb-1">Date Added:</span>
+                          <span className="font-light">{source.dateAdded}</span>
+                        </div>
+                        <div>
+                          <span className="block font-medium mb-1">Source Type:</span>
+                          <span className="font-light">{source.type}</span>
+                        </div>
+                        <div>
+                          <span className="block font-medium mb-1">{source.type === 'Website' ? 'Links:' : 'Files:'}</span>
+                          <span className="font-light">{source.count}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
               
-              <TabsContent value="models" className="mt-0">
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {[1, 2, 3].map((item) => (
-                    <div key={item} className="bg-[#1e1e1e] border border-gray-800 rounded-lg p-6 hover:border-gray-600 transition-all">
-                      <h3 className="text-xl font-light mb-3">Model {item}</h3>
-                      <p className="text-gray-400 mb-4 text-sm">Configure this model to enhance your lab experience</p>
-                      <Button variant="outline" className="text-white border-gray-600 hover:bg-gray-800 rounded-full">
-                        Configure
-                      </Button>
-                    </div>
-                  ))}
+              <h2 className="text-2xl font-light mb-4">Configure Bot</h2>
+              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
+                <ConfigureBot />
+              </div>
+            </div>
+            
+            <div>
+              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg mb-6">
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-2xl font-light">Model Settings</h2>
+                    <button className="text-gray-400 hover:text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ModelSettings />
+                  
+                  <div className="flex items-center justify-between mt-6">
+                    <Button variant="outline" className="px-4 py-2 text-sm rounded-lg bg-[#252525] border-gray-700 text-white">
+                      Reset
+                    </Button>
+                    <Button className="bg-oralia-purple hover:bg-oralia-light-purple px-4 py-2 text-sm rounded-lg">
+                      Save to chatbot
+                    </Button>
+                  </div>
                 </div>
-              </TabsContent>
+              </div>
               
-              <TabsContent value="analytics" className="mt-0">
-                <BogarAnalytics />
-              </TabsContent>
-            </Tabs>
+              <div className="bg-[#1e1e1e] border border-gray-800 rounded-lg">
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-2xl font-light">Your Concierge</h2>
+                    <button className="text-gray-400 hover:text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  <div className="bg-[#252525] rounded-xl overflow-hidden">
+                    <div className="p-4 min-h-[100px]">
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-oralia-purple rounded-full flex items-center justify-center text-white">
+                          AI
+                        </div>
+                        <div>
+                          <p className="text-white text-sm">Hi! What can I help you with?</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="p-3 border-t border-gray-800">
+                      <div className="relative">
+                        <Textarea 
+                          placeholder="Ask a question..." 
+                          className="bg-[#252525] border-gray-700 min-h-[40px] resize-none py-2"
+                        />
+                        <button className="absolute right-3 bottom-2 text-oralia-purple hover:text-white">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
           <ContentFooter />
