@@ -18,7 +18,7 @@ export default {
 			}
 		},
 		fontFamily: {
-			sans: ['"Proxima Nova"', 'Inter', 'system-ui', 'sans-serif'],
+			sans: ['Grotesque', '"Proxima Nova"', 'Inter', 'system-ui', 'sans-serif'],
 		},
 		extend: {
 			colors: {
