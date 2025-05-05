@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -110,7 +111,7 @@ const Sources = () => {
         <div className="flex-1 overflow-y-auto p-6">
           <div className="flex flex-col space-y-6">
             {/* Data sources grid section */}
-            <div className="w-full">
+            <div className="w-full bg-card/60 backdrop-blur-sm border border-border/30 rounded-xl p-6 shadow-lg">
               <div className="mb-4 flex justify-between items-center">
                 <div>
                   <h1 className="text-2xl font-light">Your Data Sources</h1>

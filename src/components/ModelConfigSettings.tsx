@@ -5,8 +5,26 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
+import { Save } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
 
 const ModelConfigSettings = () => {
+  const { toast } = useToast();
+
+  const handleSave = () => {
+    toast({
+      title: "Settings saved",
+      description: "Your model settings have been saved successfully",
+    });
+  };
+
+  const handleSaveToChatbot = () => {
+    toast({
+      title: "Settings applied to chatbot",
+      description: "Your model settings have been applied to your chatbot",
+    });
+  };
+
   return (
     <div className="w-full max-w-3xl p-6">
       <div className="mb-8">
@@ -47,9 +65,19 @@ const ModelConfigSettings = () => {
           <p className="text-xs text-oralia-text-gray">The maximum number of tokens to generate in the response</p>
         </div>
 
-        <Button className="w-full bg-oralia-light-purple hover:bg-oralia-purple mt-4">
-          SAVE
-        </Button>
+        <div className="flex gap-4 mt-6">
+          <Button className="flex-1 bg-oralia-light-purple hover:bg-oralia-purple" onClick={handleSave}>
+            SAVE
+          </Button>
+          
+          <Button 
+            className="flex-1 bg-oralia-green hover:bg-oralia-green/90 text-white"
+            onClick={handleSaveToChatbot}
+          >
+            <Save className="mr-2 h-4 w-4" />
+            Save to Chatbot
+          </Button>
+        </div>
       </div>
     </div>
   );
