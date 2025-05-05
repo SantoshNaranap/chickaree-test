@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
-import { Thermometer, MessageSquare, Bot, ChevronDown, Brain, Cpu, Microchip, Atom } from 'lucide-react';
+import { Thermometer, MessageSquare, Bot, ChevronDown, Brain, Cpu, Microchip, Atom, Save } from 'lucide-react';
 import { 
   Select,
   SelectContent,
@@ -16,13 +16,23 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const ModelSettings = () => {
   const [temperature, setTemperature] = useState(0.5);
   const [selectedModel, setSelectedModel] = useState("gpt4o");
+  const { toast } = useToast();
 
   const handleTemperatureChange = (value: number[]) => {
     setTemperature(value[0]);
+  };
+
+  const handleSaveToChatbot = () => {
+    toast({
+      title: "Settings applied to chatbot",
+      description: "Your model settings have been applied to your chatbot",
+    });
   };
 
   const modelOptions = [
@@ -164,6 +174,17 @@ const ModelSettings = () => {
           placeholder="You are a helpful AI assistant. Your responses should be..." 
           className="bg-background/70 backdrop-blur-sm border-border/50 min-h-[100px]"
         />
+      </div>
+      
+      {/* Save to Chatbot Button */}
+      <div className="bg-card/60 backdrop-blur-sm border border-border/30 rounded-xl p-4 relative overflow-hidden">
+        <Button 
+          className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white"
+          onClick={handleSaveToChatbot}
+        >
+          <Save className="mr-2 h-4 w-4" />
+          Save to Chatbot
+        </Button>
       </div>
     </div>
   );
