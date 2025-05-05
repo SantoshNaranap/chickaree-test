@@ -67,54 +67,57 @@ const Lab = () => {
             <div className="lg:col-span-2 flex flex-col">
               <h2 className="text-2xl font-light mb-4">Data Sources</h2>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-                {dataSources.map((source) => (
-                  <Card key={source.id} className={`border-border ${source.active ? 'bg-gradient-to-r from-oralia-light-purple to-oralia-purple' : 'bg-card'}`}>
-                    <CardContent className="p-4">
-                      <div className="flex items-start mb-4">
-                        <input 
-                          type="radio" 
-                          id={source.id} 
-                          name="dataSource" 
-                          checked={source.active} 
-                          className="mt-1 mr-3"
-                          readOnly
-                        />
-                        <div className="flex-grow">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xl">{source.type === 'Website' ? '🌐' : '📄'}</span>
-                              <h3 className="text-lg font-light">{source.name}</h3>
-                            </div>
-                            {source.status === 'Trained' ? (
-                              <div className="bg-oralia-green text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
-                                <Check className="w-3 h-3" /> Trained
+              {/* Added border and bg-card class to match other sections */}
+              <div className="bg-card border border-border rounded-lg p-6 mb-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {dataSources.map((source) => (
+                    <Card key={source.id} className={`border-border ${source.active ? 'bg-gradient-to-r from-oralia-light-purple to-oralia-purple' : 'bg-card'}`}>
+                      <CardContent className="p-4">
+                        <div className="flex items-start mb-4">
+                          <input 
+                            type="radio" 
+                            id={source.id} 
+                            name="dataSource" 
+                            checked={source.active} 
+                            className="mt-1 mr-3"
+                            readOnly
+                          />
+                          <div className="flex-grow">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-2">
+                                <span className="text-xl">{source.type === 'Website' ? '🌐' : '📄'}</span>
+                                <h3 className="text-lg font-light">{source.name}</h3>
                               </div>
-                            ) : (
-                              <div className="bg-amber-600 text-white text-xs px-2 py-1 rounded-md">Yet To Start</div>
-                            )}
+                              {source.status === 'Trained' ? (
+                                <div className="bg-oralia-green text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+                                  <Check className="w-3 h-3" /> Trained
+                                </div>
+                              ) : (
+                                <div className="bg-amber-600 text-white text-xs px-2 py-1 rounded-md">Yet To Start</div>
+                              )}
+                            </div>
+                            <p className="text-muted-foreground text-sm truncate font-light">{source.url}</p>
                           </div>
-                          <p className="text-muted-foreground text-sm truncate font-light">{source.url}</p>
                         </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-3 gap-4 text-xs text-muted-foreground pt-2 border-t border-border">
-                        <div>
-                          <span className="block font-medium mb-1">Date Added:</span>
-                          <span className="font-light">{source.dateAdded}</span>
+                        
+                        <div className="grid grid-cols-3 gap-4 text-xs text-muted-foreground pt-2 border-t border-border">
+                          <div>
+                            <span className="block font-medium mb-1">Date Added:</span>
+                            <span className="font-light">{source.dateAdded}</span>
+                          </div>
+                          <div>
+                            <span className="block font-medium mb-1">Source Type:</span>
+                            <span className="font-light">{source.type}</span>
+                          </div>
+                          <div>
+                            <span className="block font-medium mb-1">{source.type === 'Website' ? 'Links:' : 'Files:'}</span>
+                            <span className="font-light">{source.count}</span>
+                          </div>
                         </div>
-                        <div>
-                          <span className="block font-medium mb-1">Source Type:</span>
-                          <span className="font-light">{source.type}</span>
-                        </div>
-                        <div>
-                          <span className="block font-medium mb-1">{source.type === 'Website' ? 'Links:' : 'Files:'}</span>
-                          <span className="font-light">{source.count}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
