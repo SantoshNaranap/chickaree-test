@@ -1,9 +1,14 @@
 
 import React, { useState } from 'react';
-import { Send, RefreshCw } from 'lucide-react';
+import { Send, RefreshCw, Mic } from 'lucide-react';
 
 const Concierge: React.FC = () => {
   const [message, setMessage] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  
+  const handleMicToggle = () => {
+    setIsListening(!isListening);
+  };
   
   return (
     <div className="bg-oralia-dark-gray rounded-xl overflow-hidden h-full flex flex-col">
@@ -34,9 +39,17 @@ const Concierge: React.FC = () => {
             placeholder="Ask a question..."
             className="message-input w-full bg-oralia-light-gray rounded-lg px-4 py-2 text-white border-none focus:outline-none focus:ring-1 focus:ring-oralia-purple"
           />
-          <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-oralia-purple hover:text-white">
-            <Send className="w-5 h-5" />
-          </button>
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
+            <button 
+              className={`text-gray-400 hover:text-oralia-purple ${isListening ? 'text-oralia-purple' : ''}`}
+              onClick={handleMicToggle}
+            >
+              <Mic className="w-5 h-5" />
+            </button>
+            <button className="text-oralia-purple hover:text-white">
+              <Send className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
