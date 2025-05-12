@@ -1,19 +1,13 @@
 
 import React, { useState } from 'react';
-import { Send, RefreshCw, Mic, GitCompare } from 'lucide-react';
-import ComparisonModal from './ComparisonModal';
+import { Send, RefreshCw, Mic } from 'lucide-react';
 
 const Concierge: React.FC = () => {
   const [message, setMessage] = useState('');
   const [isListening, setIsListening] = useState(false);
-  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   
   const handleMicToggle = () => {
     setIsListening(!isListening);
-  };
-
-  const handleCompareClick = () => {
-    setIsCompareModalOpen(true);
   };
   
   return (
@@ -21,12 +15,6 @@ const Concierge: React.FC = () => {
       <div className="flex items-center justify-between p-4 border-b border-oralia-light-gray">
         <h2 className="text-xl text-white font-medium">Your Concierge</h2>
         <div className="flex items-center gap-2">
-          <button 
-            className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray"
-            onClick={handleCompareClick}
-          >
-            <GitCompare className="w-4 h-4" />
-          </button>
           <button className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray">
             <RefreshCw className="w-4 h-4" />
           </button>
@@ -66,12 +54,6 @@ const Concierge: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* Comparison Modal */}
-      <ComparisonModal 
-        isOpen={isCompareModalOpen} 
-        onClose={() => setIsCompareModalOpen(false)} 
-      />
     </div>
   );
 };

@@ -1,17 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import ContentFooter from '../components/ContentFooter';
 import { Button } from "@/components/ui/button";
-import { Plus, Check } from 'lucide-react';
+import { Plus, Check, GitCompare } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import ModelSettings from '../components/ModelSettings';
 import { Textarea } from "@/components/ui/textarea";
 import ConfigureBot from '../components/ConfigureBot';
 import Concierge from '../components/Concierge';
+import ComparisonModal from '../components/ComparisonModal';
 
 const Lab = () => {
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+  
   const dataSources = [
     {
       id: '1',
@@ -60,7 +63,21 @@ const Lab = () => {
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header />
+        <div className="flex items-center justify-between p-4 border-b border-border">
+          <Header />
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="flex items-center gap-2"
+              onClick={() => setIsCompareModalOpen(true)}
+            >
+              <GitCompare className="w-4 h-4" />
+              Compare
+            </Button>
+            <Button className="bg-oralia-purple hover:bg-oralia-purple/90" size="sm">Save As Bot</Button>
+          </div>
+        </div>
         
         <div className="flex-1 overflow-y-auto p-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">
@@ -153,6 +170,12 @@ const Lab = () => {
           </div>
         </div>
       </div>
+      
+      {/* Global ComparisonModal */}
+      <ComparisonModal 
+        isOpen={isCompareModalOpen} 
+        onClose={() => setIsCompareModalOpen(false)} 
+      />
     </div>
   );
 };
