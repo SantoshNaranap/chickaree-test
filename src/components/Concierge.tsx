@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Send, RefreshCw, Mic, Compare } from 'lucide-react';
+import { Send, RefreshCw, Mic, GitCompare } from 'lucide-react';
 import ComparisonModal from './ComparisonModal';
 
 const Concierge: React.FC = () => {
@@ -25,7 +25,7 @@ const Concierge: React.FC = () => {
             className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray"
             onClick={handleCompareClick}
           >
-            <Compare className="w-4 h-4" />
+            <GitCompare className="w-4 h-4" />
           </button>
           <button className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray">
             <RefreshCw className="w-4 h-4" />
