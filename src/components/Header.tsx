@@ -5,7 +5,11 @@ import { Menu } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { Link, useLocation } from 'react-router-dom';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onCompareClick?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onCompareClick }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   
@@ -55,7 +59,11 @@ const Header: React.FC = () => {
         
         <ThemeToggle />
         
-        <Button variant="outline" className="text-white border-gray-700">
+        <Button 
+          variant="outline" 
+          className="text-white border-gray-700"
+          onClick={onCompareClick}
+        >
           Compare
         </Button>
         

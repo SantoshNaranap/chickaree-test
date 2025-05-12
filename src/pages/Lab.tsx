@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import ContentFooter from '../components/ContentFooter';
@@ -10,8 +10,11 @@ import ModelSettings from '../components/ModelSettings';
 import { Textarea } from "@/components/ui/textarea";
 import ConfigureBot from '../components/ConfigureBot';
 import Concierge from '../components/Concierge';
+import ComparisonModal from '../components/ComparisonModal';
 
 const Lab = () => {
+  const [isComparisonModalOpen, setIsComparisonModalOpen] = useState(false);
+  
   const dataSources = [
     {
       id: '1',
@@ -55,12 +58,17 @@ const Lab = () => {
     },
   ];
 
+  // Function to handle Compare button click
+  const handleCompareClick = () => {
+    setIsComparisonModalOpen(true);
+  };
+
   return (
     <div className="flex h-screen bg-background text-foreground">
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header />
+        <Header onCompareClick={handleCompareClick} />
         
         <div className="flex-1 overflow-y-auto p-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">
@@ -153,6 +161,12 @@ const Lab = () => {
           </div>
         </div>
       </div>
+
+      {/* Add the ComparisonModal component */}
+      <ComparisonModal 
+        isOpen={isComparisonModalOpen} 
+        onClose={() => setIsComparisonModalOpen(false)} 
+      />
     </div>
   );
 };
