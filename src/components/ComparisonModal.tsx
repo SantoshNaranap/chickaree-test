@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Sync, MoreHorizontal, Send } from 'lucide-react';
+import { RefreshCw, MoreHorizontal, Send } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 
 interface ComparisonModalProps {
@@ -32,7 +32,7 @@ const ComparisonModal: React.FC<ComparisonModalProps> = ({ isOpen, onClose }) =>
                   <span>Sync</span>
                 </label>
                 <button className="p-1 text-muted-foreground hover:text-foreground">
-                  <Sync className="w-4 h-4" />
+                  <RefreshCw className="w-4 h-4" />
                 </button>
                 <button className="p-1 text-muted-foreground hover:text-foreground">
                   <MoreHorizontal className="w-4 h-4" />
@@ -78,7 +78,7 @@ const ComparisonModal: React.FC<ComparisonModalProps> = ({ isOpen, onClose }) =>
                   <span>Sync</span>
                 </label>
                 <button className="p-1 text-muted-foreground hover:text-foreground">
-                  <Sync className="w-4 h-4" />
+                  <RefreshCw className="w-4 h-4" />
                 </button>
                 <button className="p-1 text-muted-foreground hover:text-foreground">
                   <MoreHorizontal className="w-4 h-4" />
