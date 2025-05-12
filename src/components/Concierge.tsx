@@ -14,11 +14,9 @@ const Concierge: React.FC = () => {
     <div className="bg-oralia-dark-gray rounded-xl overflow-hidden h-full flex flex-col">
       <div className="flex items-center justify-between p-4 border-b border-oralia-light-gray">
         <h2 className="text-xl text-white font-medium">Your Concierge</h2>
-        <div className="flex items-center gap-2">
-          <button className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray">
-            <RefreshCw className="w-4 h-4" />
-          </button>
-        </div>
+        <button className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray">
+          <RefreshCw className="w-4 h-4" />
+        </button>
       </div>
       
       <div className="p-4 flex-grow overflow-y-auto">
