@@ -1,22 +1,36 @@
 
 import React, { useState } from 'react';
-import { Send, RefreshCw, Mic } from 'lucide-react';
+import { Send, RefreshCw, Mic, Compare } from 'lucide-react';
+import ComparisonModal from './ComparisonModal';
 
 const Concierge: React.FC = () => {
   const [message, setMessage] = useState('');
   const [isListening, setIsListening] = useState(false);
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   
   const handleMicToggle = () => {
     setIsListening(!isListening);
+  };
+
+  const handleCompareClick = () => {
+    setIsCompareModalOpen(true);
   };
   
   return (
     <div className="bg-oralia-dark-gray rounded-xl overflow-hidden h-full flex flex-col">
       <div className="flex items-center justify-between p-4 border-b border-oralia-light-gray">
         <h2 className="text-xl text-white font-medium">Your Concierge</h2>
-        <button className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray">
-          <RefreshCw className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button 
+            className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray"
+            onClick={handleCompareClick}
+          >
+            <Compare className="w-4 h-4" />
+          </button>
+          <button className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-oralia-light-gray">
+            <RefreshCw className="w-4 h-4" />
+          </button>
+        </div>
       </div>
       
       <div className="p-4 flex-grow overflow-y-auto">
@@ -52,6 +66,12 @@ const Concierge: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      {/* Comparison Modal */}
+      <ComparisonModal 
+        isOpen={isCompareModalOpen} 
+        onClose={() => setIsCompareModalOpen(false)} 
+      />
     </div>
   );
 };
