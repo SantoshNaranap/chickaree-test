@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -103,8 +102,8 @@ const ComparisonModal: React.FC<ComparisonModalProps> = ({ open, onOpenChange })
           ...bot,
           messages: [
             ...bot.messages,
-            { role: "user", content: inputValues[id] },
-            { role: "assistant", content: `Response to: ${inputValues[id]}` } // Simulate response
+            { role: "user" as const, content: inputValues[id] },
+            { role: "assistant" as const, content: `Response to: ${inputValues[id]}` } // Simulate response
           ]
         };
       }
@@ -120,7 +119,7 @@ const ComparisonModal: React.FC<ComparisonModalProps> = ({ open, onOpenChange })
     const newBot: ChatBot = {
       id: newId,
       name: "New Bot",
-      messages: [{ role: "assistant", content: "Hello! I'm ready to help." }],
+      messages: [{ role: "assistant" as const, content: "Hello! I'm ready to help." }],
       config: { ...DEFAULT_CONFIG }
     };
     
@@ -160,7 +159,7 @@ const ComparisonModal: React.FC<ComparisonModalProps> = ({ open, onOpenChange })
     setChatbots(chatbots.map(bot => 
       bot.id === id ? { 
         ...bot, 
-        messages: [{ role: "assistant", content: `Hi! I'm ${bot.name}. How can I help?` }] 
+        messages: [{ role: "assistant" as const, content: `Hi! I'm ${bot.name}. How can I help?` }] 
       } : bot
     ));
   };
