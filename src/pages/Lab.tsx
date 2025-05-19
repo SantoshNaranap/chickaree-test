@@ -1,17 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import ContentFooter from '../components/ContentFooter';
 import { Button } from "@/components/ui/button";
-import { Plus, Check } from 'lucide-react';
+import { Plus, Check, Search } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import ModelSettings from '../components/ModelSettings';
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import ConfigureBot from '../components/ConfigureBot';
 import Concierge from '../components/Concierge';
 
 const Lab = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  
   const dataSources = [
     {
       id: '1',
@@ -54,6 +57,11 @@ const Lab = () => {
       active: false,
     },
   ];
+  
+  // Filter data sources based on search term
+  const filteredDataSources = dataSources.filter(source => 
+    source.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="flex h-screen bg-background text-foreground">
@@ -69,8 +77,22 @@ const Lab = () => {
               
               {/* Added border and bg-card class to match other sections */}
               <div className="bg-card border border-border rounded-lg p-6 mb-6">
+                {/* Search bar */}
+                <div className="mb-4 relative">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      type="text"
+                      placeholder="Search data sources..."
+                      className="pl-10 bg-background"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </div>
+                </div>
+                
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  {dataSources.map((source) => (
+                  {filteredDataSources.map((source) => (
                     <Card key={source.id} className={`border-border ${source.active ? 'bg-gradient-to-r from-oralia-light-purple to-oralia-purple' : 'bg-card'}`}>
                       <CardContent className="p-4">
                         <div className="flex items-start mb-4">
@@ -117,6 +139,12 @@ const Lab = () => {
                       </CardContent>
                     </Card>
                   ))}
+                  
+                  {filteredDataSources.length === 0 && (
+                    <div className="col-span-2 py-8 text-center text-muted-foreground">
+                      No data sources found matching "{searchTerm}"
+                    </div>
+                  )}
                 </div>
               </div>
               
