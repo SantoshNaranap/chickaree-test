@@ -17,8 +17,11 @@ import { useEffect } from "react";
 // Function to apply the saved palette on app initialization
 const AppContent = () => {
   useEffect(() => {
+    // Force dark mode on the document
+    document.documentElement.classList.add('dark');
+    
     // Get palette from localStorage or use default
-    const savedPalette = localStorage.getItem("theme-palette") || "system";
+    const savedPalette = localStorage.getItem("theme-palette") || "volcanic";
     
     // Apply the palette class to the document
     document.documentElement.classList.forEach(className => {
@@ -39,7 +42,7 @@ const AppContent = () => {
     // Add event listener for storage changes to sync palette across tabs
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === "theme-palette") {
-        const newPalette = event.newValue || "system";
+        const newPalette = event.newValue || "volcanic";
         
         document.documentElement.classList.forEach(className => {
           if (className.startsWith('palette-')) {
@@ -81,7 +84,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
       <AppContent />
     </ThemeProvider>
   </QueryClientProvider>

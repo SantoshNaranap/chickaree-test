@@ -16,7 +16,7 @@ const ThemeToggle = () => {
     setTheme("dark");
     
     // Preserve the current palette when setting dark theme
-    const currentPalette = localStorage.getItem("theme-palette") || "system";
+    const currentPalette = localStorage.getItem("theme-palette") || "volcanic";
     if (currentPalette !== "system") {
       document.documentElement.classList.forEach(className => {
         if (className.startsWith('palette-')) {
@@ -25,6 +25,16 @@ const ThemeToggle = () => {
       });
       document.documentElement.classList.add(`palette-${currentPalette}`);
     }
+    
+    // Force dark class on document
+    document.documentElement.classList.add('dark');
+    
+    // Show a toast message indicating dark mode is active
+    toast({
+      title: "Dark theme active",
+      description: "The application is now in dark mode with the selected palette",
+      duration: 1500,
+    });
   }, [setTheme]);
 
   if (!mounted) {
