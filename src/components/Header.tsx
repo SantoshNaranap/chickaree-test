@@ -1,15 +1,13 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { Link, useLocation } from 'react-router-dom';
-import ComparisonModal from './ComparisonModal';
 
 const Header: React.FC = () => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const [comparisonOpen, setComparisonOpen] = useState(false);
   
   // Navigation items
   const navItems = [
@@ -57,11 +55,7 @@ const Header: React.FC = () => {
         
         <ThemeToggle />
         
-        <Button 
-          variant="outline" 
-          className="text-white border-gray-700"
-          onClick={() => setComparisonOpen(true)}
-        >
+        <Button variant="outline" className="text-white border-gray-700">
           Compare
         </Button>
         
@@ -73,12 +67,6 @@ const Header: React.FC = () => {
           JD
         </div>
       </div>
-      
-      {/* Comparison Modal */}
-      <ComparisonModal 
-        open={comparisonOpen} 
-        onOpenChange={setComparisonOpen} 
-      />
     </header>
   );
 };
