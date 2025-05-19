@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -56,6 +57,56 @@ const Lab = () => {
       type: 'File',
       status: 'Yet To Start',
       count: 1,
+      active: false,
+    },
+    {
+      id: '5',
+      name: 'Technical Docs',
+      url: 'https://docs.technical.com',
+      dateAdded: 'May 2, 2023 10:22 AM',
+      type: 'Website',
+      status: 'Trained',
+      count: 83,
+      active: false,
+    },
+    {
+      id: '6',
+      name: 'Annual Report 2023',
+      url: 'Annual_Report_2023.pdf',
+      dateAdded: 'May 10, 2023 2:15 PM',
+      type: 'File',
+      status: 'Yet To Start',
+      count: 1,
+      active: false,
+    },
+    {
+      id: '7',
+      name: 'Product Catalog',
+      url: 'https://products.example.com',
+      dateAdded: 'May 15, 2023 9:05 AM',
+      type: 'Website',
+      status: 'Trained',
+      count: 152,
+      active: false,
+    },
+    {
+      id: '8',
+      name: 'User Manual',
+      url: 'User_Manual_v2.pdf',
+      dateAdded: 'May 17, 2023 11:30 AM',
+      type: 'File',
+      status: 'Yet To Start',
+      count: 1,
+      active: false,
+    },
+    {
+      id: '9',
+      name: 'API Documentation',
+      url: 'https://api.docs.example.com',
+      dateAdded: 'May 18, 2023 4:45 PM',
+      type: 'Website',
+      status: 'Trained',
+      count: 78,
       active: false,
     },
   ];
