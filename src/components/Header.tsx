@@ -2,7 +2,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
@@ -52,8 +51,6 @@ const Header: React.FC = () => {
             URL found and already trained
           </div>
         </div>
-        
-        <ThemeToggle />
         
         <Button variant="outline" className="text-white border-gray-700">
           Compare
