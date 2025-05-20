@@ -28,8 +28,8 @@ const Lab = () => {
               <ContentFooter />
             </div>
             
-            <div className="flex flex-col h-full">
-              <div className="bg-card border border-border rounded-lg flex-grow">
+            <div className="flex flex-col h-full sticky top-8">
+              <div className="bg-card border border-border rounded-lg flex-grow shadow-lg">
                 <div className="p-6 h-full flex flex-col">
                   <div className="flex-grow h-full">
                     <Concierge />
